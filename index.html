@@ -1285,18 +1285,21 @@ footer {
           target: document.getElementById('vf-chat-embed'),
         },
         autostart: true,
-        launch: {
-          event: {
-            type: 'launch',
-            payload: {}
-          }
-        },
         assistant: {
           title: 'Bucks County Home Advisor',
           description: 'Get your free AI home value estimate',
           color: '#2c4a3e',
+          persistence: 'memory',
         }
       });
+
+      /* Force open and trigger greeting after widget initializes */
+      setTimeout(function() {
+        try {
+          window.voiceflow.chat.open();
+          window.voiceflow.chat.interact({ type: 'launch', payload: {} });
+        } catch(e) {}
+      }, 1500);
 
       /* Inject CSS into widget iframe to kill the header bar from inside */
       function hideVFHeader() {
