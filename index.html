@@ -1255,23 +1255,26 @@ footer {
 
 <!-- ═══════════════ VOICEFLOW EMBED ═══════════════ -->
 <style>
-/* Hide Voiceflow inner blue header bar - all known selectors */
 #vf-chat-embed iframe { border: none !important; }
-#vf-chat-embed vf-chat::part(header),
 #vf-chat-embed [class*="Header"],
 #vf-chat-embed [class*="header"],
 #vf-chat-embed [class*="ChatHeader"],
-#vf-chat-embed [class*="chat-header"],
-#vf-chat-embed [class*="Assistant"],
-#vf-chat-embed [data-testid="chat-header"] {
+#vf-chat-embed [class*="Assistant"] {
   display: none !important;
   height: 0 !important;
-  overflow: hidden !important;
   visibility: hidden !important;
 }
 </style>
 
 <script type="text/javascript">
+  /* Step 1: Wipe all Voiceflow localStorage so session always starts fresh */
+  try {
+    Object.keys(localStorage).forEach(function(k) {
+      if (/voiceflow|vf-|chat/i.test(k)) localStorage.removeItem(k);
+    });
+  } catch(e) {}
+
+  /* Step 2: Load widget */
   (function(d, t) {
     var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
     v.onload = function() {
@@ -1293,48 +1296,20 @@ footer {
         }
       });
 
-      /* Force open and trigger greeting after widget initializes */
-    var checkReady = setInterval(function() {
+      /* Step 3: Keep trying to trigger greeting until widget is ready */
+      var launched = false;
+      var checkReady = setInterval(function() {
         try {
-          if (window.voiceflow && window.voiceflow.chat) {
+          if (!launched && window.voiceflow && window.voiceflow.chat) {
+            launched = true;
+            clearInterval(checkReady);
             window.voiceflow.chat.open();
             window.voiceflow.chat.interact({ type: 'launch', payload: {} });
-            clearInterval(checkReady);
           }
         } catch(e) {}
       }, 500);
-      /* Inject CSS into widget iframe to kill the header bar from inside */
-      function hideVFHeader() {
-        var container = document.getElementById('vf-chat-embed');
-        if (!container) return;
-
-        /* Target shadow DOM / web component */
-        var vfEl = container.querySelector('vf-chat');
-        if (vfEl && vfEl.shadowRoot) {
-          var s = document.createElement('style');
-          s.textContent = '[class*="Header"],[class*="header"],[class*="ChatHeader"],[class*="chat-header"],[class*="Assistant"]{display:none!important;height:0!important;}';
-          vfEl.shadowRoot.appendChild(s);
-        }
-
-        /* Target iframe if rendered that way */
-        var iframe = container.querySelector('iframe');
-        if (iframe) {
-          iframe.addEventListener('load', function() {
-            try {
-              var doc = iframe.contentDocument || iframe.contentWindow.document;
-              var s = doc.createElement('style');
-              s.textContent = '[class*="Header"],[class*="header"],[class*="ChatHeader"],[class*="chat-header"],[class*="Assistant"]{display:none!important;height:0!important;}';
-              doc.head.appendChild(s);
-            } catch(e) { /* cross-origin may block, CSS above covers it */ }
-          });
-        }
-      }
-
-      /* Run immediately and again after widget finishes rendering */
-      setTimeout(hideVFHeader, 800);
-      setTimeout(hideVFHeader, 2000);
+      setTimeout(function() { clearInterval(checkReady); }, 10000);
     }
-
     v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
     v.type = "text/javascript";
     s.parentNode.insertBefore(v, s);
