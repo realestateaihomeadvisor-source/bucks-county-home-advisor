@@ -1294,13 +1294,15 @@ footer {
       });
 
       /* Force open and trigger greeting after widget initializes */
-      setTimeout(function() {
+    var checkReady = setInterval(function() {
         try {
-          window.voiceflow.chat.open();
-          window.voiceflow.chat.interact({ type: 'launch', payload: {} });
+          if (window.voiceflow && window.voiceflow.chat) {
+            window.voiceflow.chat.open();
+            window.voiceflow.chat.interact({ type: 'launch', payload: {} });
+            clearInterval(checkReady);
+          }
         } catch(e) {}
-      }, 3000);
-
+      }, 500);
       /* Inject CSS into widget iframe to kill the header bar from inside */
       function hideVFHeader() {
         var container = document.getElementById('vf-chat-embed');
