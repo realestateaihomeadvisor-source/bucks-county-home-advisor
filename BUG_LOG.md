@@ -6,6 +6,17 @@ After fixing anything, add it here so we never repeat it.
 
 ---
 
+## April 1, 2026 — FIXED: Chatbot greeting not auto-firing
+
+PROBLEM: Widget showed blank splash screen with "Start New Chat" button.
+Greeting would not fire automatically on page load.
+
+ROOT CAUSE: autostart was set to false in the Voiceflow embed script.
+
+FIX: Changed autostart: false → autostart: true in index.html
+
+DO NOT CHANGE autostart TO false. Ever. This breaks the greeting.
+
 ## 🔴 OPEN BUGS
 
 ### BUG-001: Blue "Your AI agent" banner inside Voiceflow widget
