@@ -1263,24 +1263,22 @@ footer {
   var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
 
   v.onload = function() {
-    /* Determine if this is a fresh session or a reload mid-conversation */
     var SESSION_KEY = 'vf_session_v1';
     var USER_KEY    = 'vf_user_id_v1';
 
-    var isNewSession = !sessionStorage.getItem(SESSION_KEY);
+    /* PHASE 1 FIX: always treat as fresh session so greeting fires on every load */
+    var isNewSession = true;
     var storedUserID = sessionStorage.getItem(USER_KEY);
-    var userID = isNewSession ? String(Date.now()) : (storedUserID || String(Date.now()));
+    var userID = storedUserID || String(Date.now());
 
-    if (isNewSession) {
-      /* Fresh tab: wipe stale localStorage and store new session marker */
-      try {
-        Object.keys(localStorage).forEach(function(k) {
-          if (/voiceflow|vf-/i.test(k)) localStorage.removeItem(k);
-        });
-      } catch(e) {}
-      sessionStorage.setItem(SESSION_KEY, '1');
-      sessionStorage.setItem(USER_KEY, userID);
-    }
+    /* Wipe stale Voiceflow localStorage on every load */
+    try {
+      Object.keys(localStorage).forEach(function(k) {
+        if (/voiceflow|vf-/i.test(k)) localStorage.removeItem(k);
+      });
+    } catch(e) {}
+    sessionStorage.setItem(SESSION_KEY, '1');
+    sessionStorage.setItem(USER_KEY, userID);
 
     window.voiceflow.chat.load({
       verify:    { projectID: '69c64d82ea3646d26e12d74d' },
@@ -1300,40 +1298,24 @@ footer {
       }
     });
 
-    /* Fire greeting only on fresh sessions, with extended retry window */
-    if (isNewSession) {
-      var launched  = false;
-      var attempts  = 0;
-      var maxChecks = 30; /* 30 × 400ms = 12 seconds max */
+    var launched  = false;
+    var attempts  = 0;
+    var maxChecks = 30; /* 30 × 400ms = 12 seconds max */
 
-      var checkReady = setInterval(function() {
-        attempts++;
-        try {
-          if (!launched && window.voiceflow && window.voiceflow.chat && window.voiceflow.chat.interact) {
-            launched = true;
-            clearInterval(checkReady);
-            window.voiceflow.chat.open();
-            setTimeout(function() {
-              window.voiceflow.chat.interact({ type: 'launch', payload: {} });
-            }, 300); /* Small buffer after open() before firing launch */
-          }
-        } catch(e) {}
-        if (attempts >= maxChecks) clearInterval(checkReady);
-      }, 400);
-    } else {
-      /* Returning mid-session: just open the widget, do not re-launch */
-      var reopenAttempts = 0;
-      var reopenCheck = setInterval(function() {
-        reopenAttempts++;
-        try {
-          if (window.voiceflow && window.voiceflow.chat && window.voiceflow.chat.open) {
-            clearInterval(reopenCheck);
-            window.voiceflow.chat.open();
-          }
-        } catch(e) {}
-        if (reopenAttempts >= 20) clearInterval(reopenCheck);
-      }, 400);
-    }
+    var checkReady = setInterval(function() {
+      attempts++;
+      try {
+        if (!launched && window.voiceflow && window.voiceflow.chat && window.voiceflow.chat.interact) {
+          launched = true;
+          clearInterval(checkReady);
+          window.voiceflow.chat.open();
+          setTimeout(function() {
+            window.voiceflow.chat.interact({ type: 'launch', payload: {} });
+          }, 300);
+        }
+      } catch(e) {}
+      if (attempts >= maxChecks) clearInterval(checkReady);
+    }, 400);
   };
 
   v.src  = "https://cdn.voiceflow.com/widget/bundle.mjs";
