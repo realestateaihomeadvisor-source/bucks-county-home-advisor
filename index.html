@@ -1256,64 +1256,90 @@ footer {
 <!-- ═══════════════ VOICEFLOW EMBED ═══════════════ -->
 <style>
 #vf-chat-embed iframe { border: none !important; }
-#vf-chat-embed [class*="Header"],
-#vf-chat-embed [class*="header"],
-#vf-chat-embed [class*="ChatHeader"],
-#vf-chat-embed [class*="Assistant"] {
-  display: none !important;
-  height: 0 !important;
-  visibility: hidden !important;
-}
 </style>
 
 <script type="text/javascript">
-  /* Step 1: Wipe all Voiceflow localStorage so session always starts fresh */
-  try {
-    Object.keys(localStorage).forEach(function(k) {
-      if (/voiceflow|vf-|chat/i.test(k)) localStorage.removeItem(k);
+(function(d, t) {
+  var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+
+  v.onload = function() {
+    /* Determine if this is a fresh session or a reload mid-conversation */
+    var SESSION_KEY = 'vf_session_v1';
+    var USER_KEY    = 'vf_user_id_v1';
+
+    var isNewSession = !sessionStorage.getItem(SESSION_KEY);
+    var storedUserID = sessionStorage.getItem(USER_KEY);
+    var userID = isNewSession ? String(Date.now()) : (storedUserID || String(Date.now()));
+
+    if (isNewSession) {
+      /* Fresh tab: wipe stale localStorage and store new session marker */
+      try {
+        Object.keys(localStorage).forEach(function(k) {
+          if (/voiceflow|vf-/i.test(k)) localStorage.removeItem(k);
+        });
+      } catch(e) {}
+      sessionStorage.setItem(SESSION_KEY, '1');
+      sessionStorage.setItem(USER_KEY, userID);
+    }
+
+    window.voiceflow.chat.load({
+      verify:    { projectID: '69c64d82ea3646d26e12d74d' },
+      url:       'https://general-runtime.voiceflow.com',
+      versionID: 'production',
+      userID:    userID,
+      render: {
+        mode:   'embedded',
+        target: document.getElementById('vf-chat-embed'),
+      },
+      autostart: false,
+      assistant: {
+        title:       'Bucks County Home Advisor',
+        description: 'Get your free AI home value estimate',
+        color:       '#2c4a3e',
+        persistence: 'memory',
+      }
     });
-  } catch(e) {}
 
-  /* Step 2: Load widget */
-  (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-    v.onload = function() {
-      window.voiceflow.chat.load({
-        verify: { projectID: '69c64d82ea3646d26e12d74d' },
-        url: 'https://general-runtime.voiceflow.com',
-        versionID: 'production',
-        userID: Date.now().toString(),
-        render: {
-          mode: 'embedded',
-          target: document.getElementById('vf-chat-embed'),
-        },
-        autostart: false,
-        assistant: {
-          title: 'Bucks County Home Advisor',
-          description: 'Get your free AI home value estimate',
-          color: '#2c4a3e',
-          persistence: 'memory',
-        }
-      });
+    /* Fire greeting only on fresh sessions, with extended retry window */
+    if (isNewSession) {
+      var launched  = false;
+      var attempts  = 0;
+      var maxChecks = 30; /* 30 × 400ms = 12 seconds max */
 
-      /* Step 3: Keep trying to trigger greeting until widget is ready */
-      var launched = false;
       var checkReady = setInterval(function() {
+        attempts++;
         try {
-          if (!launched && window.voiceflow && window.voiceflow.chat) {
+          if (!launched && window.voiceflow && window.voiceflow.chat && window.voiceflow.chat.interact) {
             launched = true;
             clearInterval(checkReady);
             window.voiceflow.chat.open();
-            window.voiceflow.chat.interact({ type: 'launch', payload: {} });
+            setTimeout(function() {
+              window.voiceflow.chat.interact({ type: 'launch', payload: {} });
+            }, 300); /* Small buffer after open() before firing launch */
           }
         } catch(e) {}
-      }, 500);
-      setTimeout(function() { clearInterval(checkReady); }, 10000);
+        if (attempts >= maxChecks) clearInterval(checkReady);
+      }, 400);
+    } else {
+      /* Returning mid-session: just open the widget, do not re-launch */
+      var reopenAttempts = 0;
+      var reopenCheck = setInterval(function() {
+        reopenAttempts++;
+        try {
+          if (window.voiceflow && window.voiceflow.chat && window.voiceflow.chat.open) {
+            clearInterval(reopenCheck);
+            window.voiceflow.chat.open();
+          }
+        } catch(e) {}
+        if (reopenAttempts >= 20) clearInterval(reopenCheck);
+      }, 400);
     }
-    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
-    v.type = "text/javascript";
-    s.parentNode.insertBefore(v, s);
-  })(document, 'script');
+  };
+
+  v.src  = "https://cdn.voiceflow.com/widget/bundle.mjs";
+  v.type = "text/javascript";
+  s.parentNode.insertBefore(v, s);
+})(document, 'script');
 </script>
 
 </body>
