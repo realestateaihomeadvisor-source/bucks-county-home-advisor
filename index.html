@@ -572,38 +572,45 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
 
 <script type="text/javascript">
 (function(d, t) {
+  const PROJECT_ID = '69d28279586be3d65254489a';
+  const VERSION_ID = 'development';
+  const STORAGE_KEY = 'vf_user_id_bucks_county_current';
+
   var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
 
   v.onload = function() {
+    let userId = '';
 
-    /* ✅ HARD RESET SESSION (prevents old flows sticking) */
     try {
-      Object.keys(localStorage).forEach(function(k) {
-        if (/voiceflow|vf-/i.test(k)) localStorage.removeItem(k);
-      });
-    } catch(e) {}
+      const params = new URLSearchParams(window.location.search);
 
-    /* ✅ SET YOUR NEW PROJECT ID HERE */
-    const PROJECT_ID = '69d28279586be3d65254489a';
+      if (params.get('resetChat') === '1') {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+
+      userId = localStorage.getItem(STORAGE_KEY);
+
+      if (!userId) {
+        userId = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+        localStorage.setItem(STORAGE_KEY, userId);
+      }
+    } catch (e) {
+      userId = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+    }
+
     window.voiceflow.chat.load({
       verify: { projectID: PROJECT_ID },
       url: 'https://general-runtime.voiceflow.com',
-      versionID: 'production',
-
-      /* ✅ NEW SESSION EVERY LOAD */
-      userID: 'user_' + Date.now() + '_' + Math.random().toString(36).substring(2, 10),
-
+      versionID: VERSION_ID,
+      userID: userId,
       render: {
         mode: 'embedded',
         target: document.getElementById('vf-chat-embed'),
       },
-
       autostart: true,
-
       launch: {
         event: { type: 'launch', payload: {} }
       },
-
       assistant: {
         title: 'Bucks County Home Advisor',
         description: 'Get your free AI home value estimate',
@@ -613,9 +620,11 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
     });
   };
 
-  v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
-  v.type = "text/javascript";
+  v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
+  v.type = 'text/javascript';
   s.parentNode.insertBefore(v, s);
-
 })(document, 'script');
 </script>
+
+</body>
+</html>
