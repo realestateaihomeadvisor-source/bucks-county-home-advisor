@@ -572,8 +572,10 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
 
 <script type="text/javascript">
 (function(d, t) {
-  const PROJECT_ID = '69d28279586be3d65254489a';
-  const VERSION_ID = 'development';
+  // ✅ FIXED: Real project ID (not the dev version ID)
+  const PROJECT_ID  = '69d28279586be3d652544899';
+  // ✅ FIXED: Point to published Production flow
+  const VERSION_ID  = 'production';
   const STORAGE_KEY = 'vf_user_id_bucks_county_current';
 
   var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -599,12 +601,12 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
     }
 
     window.voiceflow.chat.load({
-      verify: { projectID: PROJECT_ID },
-      url: 'https://general-runtime.voiceflow.com',
+      verify:    { projectID: PROJECT_ID },
+      url:       'https://general-runtime.voiceflow.com',
       versionID: VERSION_ID,
-      userID: userId,
+      userID:    userId,
       render: {
-        mode: 'embedded',
+        mode:   'embedded',
         target: document.getElementById('vf-chat-embed'),
       },
       autostart: true,
@@ -612,9 +614,9 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
         event: { type: 'launch', payload: {} }
       },
       assistant: {
-        title: 'Bucks County Home Advisor',
+        title:       'Bucks County Home Advisor',
         description: 'Get your free AI home value estimate',
-        color: '#2c4a3e',
+        color:       '#2c4a3e',
         persistence: 'memory',
       }
     });
