@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bucks County Home Value Estimator | Free AI Estimate</title>
+<meta name="description" content="Get a free AI-generated Bucks County home value estimate built on real local sales data. No pressure, no sign-up required. See your estimate in 60 seconds."/>
+<link rel="canonical" href="https://buckscountyhomevaluenow.com/bucks-county-home-value-estimator.html"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --forest:      #2c4a3e;
+  --forest-mid:  #3d6355;
+  --forest-light:#4e7a67;
+  --gold:        #c9973a;
+  --gold-light:  #e8b84b;
+  --gold-pale:   rgba(201,151,58,0.12);
+  --cream:       #f8f4ee;
+  --warm:        #f0e9df;
+  --warm-mid:    #e8ddd2;
+  --ink:         #1c1c1a;
+  --ink-mid:     #3a3a38;
+  --muted:       #6b6560;
+  --white:       #ffffff;
+  --shadow-sm:   0 2px 8px rgba(26,26,26,0.08);
+  --shadow-md:   0 8px 30px rgba(26,26,26,0.12);
+  --shadow-lg:   0 20px 60px rgba(26,26,26,0.15);
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { text-decoration: none; }
+button { font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eyebrow::before {
+  content: '';
+  display: block; width: 20px; height: 2px;
+  background: var(--gold); border-radius: 2px;
+  flex-shrink: 0;
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.1; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes glow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes scaleIn {
+  to { transform: scaleX(1); }
+}
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30%           { transform: translateY(-5px); opacity: 1; }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 52px; height: 68px;
+  background: rgba(248,244,238,0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201,151,58,0.12);
+  animation: fadeIn 0.5s ease both;
+}
+
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 1rem;
+  color: var(--forest); line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.nav-brand span { color: var(--gold); }
+
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--muted); letter-spacing: 0.02em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--forest); }
+
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold); color: var(--white) !important;
+  font-size: 0.85rem; font-weight: 600;
+  padding: 10px 22px; border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 3px 12px rgba(201,151,58,0.35);
+}
+.nav-btn:hover { background: var(--gold-light); color: var(--white) !important; transform: translateY(-1px); }
+
+.hero {
+  min-height: 100vh;
+  padding: 100px 52px 80px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+  position: relative; overflow: hidden;
+}
+
+.hero-page {
+  min-height: auto;
+  grid-template-columns: 1fr;
+  padding-bottom: 64px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 65% 40%, rgba(201,151,58,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 5% 80%, rgba(44,74,62,0.07) 0%, transparent 60%);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(201,151,58,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,151,58,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.hero-left { position: relative; z-index: 2; }
+
+.live-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(44,74,62,0.07);
+  border: 1px solid rgba(44,74,62,0.18);
+  padding: 7px 16px 7px 10px; border-radius: 100px;
+  margin-bottom: 30px;
+  animation: fadeUp 0.6s ease both;
+}
+.live-dot {
+  width: 8px; height: 8px;
+  background: #4ade80; border-radius: 50%;
+  animation: glow 2s ease-in-out infinite;
+  box-shadow: 0 0 6px #4ade80;
+}
+.live-badge span { font-size: 0.78rem; font-weight: 600; color: var(--forest); letter-spacing: 0.04em; }
+
+.hero-h1 {
+  font-size: clamp(2.6rem, 4.8vw, 4rem); font-weight: 900;
+  color: var(--ink); line-height: 1.08; margin-bottom: 6px;
+  animation: fadeUp 0.6s 0.08s ease both; letter-spacing: -0.02em;
+}
+.hero-h1 .accent { color: var(--forest); font-style: italic; position: relative; display: inline-block; }
+.hero-h1 .accent::after {
+  content: '';
+  position: absolute; bottom: 4px; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 4px; transform: scaleX(0); transform-origin: left;
+  animation: scaleIn 0.5s 0.8s ease forwards;
+}
+
+.hero-sub-line {
+  font-size: clamp(2.6rem, 4.8vw, 4rem); font-weight: 700; font-style: italic;
+  color: var(--gold); line-height: 1.08; margin-bottom: 26px;
+  animation: fadeUp 0.6s 0.12s ease both; letter-spacing: -0.02em;
+}
+
+.hero-desc {
+  font-size: 1.08rem; font-weight: 400; color: var(--muted);
+  line-height: 1.7; max-width: 540px; margin-bottom: 38px;
+  animation: fadeUp 0.6s 0.18s ease both;
+}
+
+.hero-cta {
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  margin-bottom: 32px; animation: fadeUp 0.6s 0.24s ease both;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--forest); color: var(--white);
+  font-size: 1rem; font-weight: 600;
+  padding: 17px 34px; border-radius: var(--radius-sm);
+  letter-spacing: 0.01em;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 6px 24px rgba(44,74,62,0.28);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(44,74,62,0.35); background: var(--forest-mid); }
+.btn-primary .arrow { transition: transform 0.2s; flex-shrink: 0; }
+.btn-primary:hover .arrow { transform: translateX(4px); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.9rem; font-weight: 500; color: var(--muted);
+  padding: 4px 0; border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-ghost:hover { color: var(--forest); border-color: var(--forest); }
+
+.trust-pills {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--white); border: 1px solid var(--warm-mid);
+  padding: 7px 14px; border-radius: 100px;
+  font-size: 0.78rem; font-weight: 500; color: var(--ink-mid);
+  box-shadow: var(--shadow-sm);
+}
+.pill-icon { font-size: 0.85rem; }
+
+.hero-right { position: relative; z-index: 2; animation: fadeUp 0.7s 0.2s ease both; }
+.card-wrap { position: relative; }
+
+.card-shadow-deco {
+  position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px;
+  background: var(--forest); border-radius: var(--radius-xl);
+  opacity: 0.12; z-index: 0;
+}
+
+.chatbot-card {
+  position: relative; z-index: 1;
+  background: var(--white); border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg); overflow: hidden;
+  border: 1px solid rgba(240,233,223,0.9);
+  max-width: 500px; margin-left: auto;
+}
+
+.card-header {
+  background: var(--forest); padding: 20px 26px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.advisor-info { display: flex; align-items: center; gap: 13px; }
+.advisor-avatar {
+  width: 42px; height: 42px;
+  background: rgba(201,151,58,0.2); border: 2px solid rgba(201,151,58,0.35);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.advisor-name { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 3px; font-family: 'DM Sans', sans-serif; }
+.advisor-status { display: flex; align-items: center; gap: 6px; font-size: 0.73rem; color: rgba(255,255,255,0.6); }
+.status-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; animation: glow 2s ease-in-out infinite; }
+.card-badge {
+  background: rgba(201,151,58,0.2); border: 1px solid rgba(201,151,58,0.35);
+  padding: 4px 12px; border-radius: 100px;
+  font-size: 0.7rem; font-weight: 600; color: var(--gold-light);
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
+
+.card-disclaimer {
+  text-align: center; margin-top: 14px;
+  font-size: 0.82rem; color: var(--muted);
+  line-height: 1.6; max-width: 400px;
+  margin-left: auto; margin-right: auto;
+}
+.card-disclaimer a { color: var(--gold); border-bottom: 1px solid rgba(201,151,58,0.3); }
+
+.section { padding: 96px 52px; }
+.section-head { margin-bottom: 56px; }
+.section-head .section-title { font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 900; color: var(--ink); margin-top: 14px; margin-bottom: 16px; letter-spacing: -0.02em; }
+.section-head .section-desc { font-size: 1.05rem; color: var(--muted); line-height: 1.7; max-width: 540px; }
+
+.how-section { background: var(--white); }
+
+.steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; position: relative; }
+.steps-row::before {
+  content: ''; position: absolute;
+  top: 40px; left: calc(16.66% + 14px); right: calc(16.66% + 14px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201,151,58,0.3) 20%, rgba(201,151,58,0.6) 50%, rgba(201,151,58,0.3) 80%, transparent 100%);
+  z-index: 0;
+}
+
+.step-card {
+  background: var(--cream); border: 1px solid rgba(201,151,58,0.14);
+  border-radius: var(--radius-lg); padding: 32px 28px 28px;
+  position: relative; z-index: 1; transition: transform 0.25s, box-shadow 0.25s;
+}
+.step-card:hover { transform: translateY(-6px); box-shadow: 0 14px 44px rgba(44,74,62,0.13); }
+.step-num {
+  width: 52px; height: 52px; background: var(--forest); color: var(--white);
+  border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900;
+  margin-bottom: 22px; box-shadow: 0 6px 20px rgba(44,74,62,0.25);
+}
+.step-card h3 { font-family: 'DM Sans', sans-serif; font-size: 1.02rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+.step-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+
+.market-section { background: var(--forest); position: relative; overflow: hidden; }
+.market-section::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,151,58,0.12) 0%, transparent 60%); border-radius: 50%; pointer-events: none; }
+.market-section::after { content: ''; position: absolute; bottom: -150px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%); border-radius: 50%; pointer-events: none; }
+.market-section .eyebrow { color: var(--gold-light); }
+.market-section .eyebrow::before { background: var(--gold-light); }
+.market-section .section-title { color: var(--white); }
+.market-section .section-desc { color: rgba(255,255,255,0.65); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 30px 24px; text-align: center; transition: background 0.25s, transform 0.25s; position: relative; z-index: 1; }
+.stat-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.3rem; font-weight: 900; color: var(--gold-light); margin-bottom: 8px; line-height: 1; }
+.stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.45; }
+.stat-trend { display: inline-block; margin-top: 10px; font-size: 0.72rem; font-weight: 600; color: #4ade80; background: rgba(74,222,128,0.12); padding: 3px 10px; border-radius: 100px; }
+
+.why-section { background: var(--warm); padding: 96px 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.why-list { margin-top: 38px; display: flex; flex-direction: column; gap: 24px; }
+.why-item { display: flex; gap: 16px; align-items: flex-start; }
+.why-icon { width: 46px; height: 46px; flex-shrink: 0; background: var(--forest); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; box-shadow: 0 4px 14px rgba(44,74,62,0.2); }
+.why-text h4 { font-family: 'DM Sans', sans-serif; font-size: 0.98rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+.why-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+.report-visual { background: var(--forest); border-radius: var(--radius-xl); padding: 34px 30px; color: var(--white); position: relative; overflow: hidden; box-shadow: 0 24px 64px rgba(44,74,62,0.3); animation: float 6s ease-in-out infinite; }
+.report-visual::before { content: ''; position: absolute; top: -80px; right: -80px; width: 250px; height: 250px; background: rgba(201,151,58,0.1); border-radius: 50%; }
+.report-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; position: relative; z-index: 1; }
+.report-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
+.report-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); line-height: 1.3; }
+.report-badge { background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); padding: 4px 12px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; color: #4ade80; white-space: nowrap; }
+.estimate-block { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-md); padding: 22px 20px; margin-bottom: 16px; position: relative; z-index: 1; }
+.estimate-small-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+.estimate-value { font-family: 'Playfair Display', serif; font-size: 2.1rem; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 8px; }
+.estimate-address { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+.estimate-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+.tag { background: rgba(255,255,255,0.09); border-radius: 100px; padding: 4px 12px; font-size: 0.72rem; color: rgba(255,255,255,0.65); }
+.report-meta { display: flex; justify-content: space-between; font-size: 0.78rem; color: rgba(255,255,255,0.55); position: relative; z-index: 1; margin-bottom: 16px; }
+.report-meta strong { color: rgba(255,255,255,0.85); }
+.report-disclaimer { font-size: 0.68rem; color: rgba(255,255,255,0.35); line-height: 1.55; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 14px; position: relative; z-index: 1; }
+
+.cta-section { padding: 100px 52px; background: var(--cream); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(201,151,58,0.07) 0%, transparent 65%); border-radius: 50%; pointer-events: none; }
+.cta-inner { position: relative; z-index: 1; }
+.cta-section .section-title { font-size: clamp(2rem, 3.5vw, 3rem); max-width: 640px; margin: 16px auto 20px; letter-spacing: -0.02em; }
+.cta-section .section-desc { max-width: 500px; margin: 0 auto 42px; font-size: 1.05rem; color: var(--muted); line-height: 1.7; }
+.cta-note { margin-top: 18px; font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; justify-content: center; gap: 16px; }
+.cta-note span { display: flex; align-items: center; gap: 5px; }
+
+footer { background: var(--ink); padding: 52px 52px 36px; }
+.footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.footer-brand-name span { color: var(--gold); }
+.footer-about { font-size: 0.83rem; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 280px; }
+.footer-col h4 { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { font-size: 0.85rem; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; }
+.footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-bottom: 8px; }
+.footer-bottom a { color: rgba(201,151,58,0.7); }
+
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 88px 24px 60px; gap: 44px; }
+  .chatbot-card { max-width: 100%; }
+  .card-shadow-deco { display: none; }
+  .section { padding: 72px 24px; }
+  .steps-row { grid-template-columns: 1fr; }
+  .steps-row::before { display: none; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .why-section { grid-template-columns: 1fr; padding: 72px 24px; gap: 44px; }
+  .cta-section { padding: 72px 24px; }
+  footer { padding: 48px 24px 32px; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://buckscountyhomevaluenow.com/#organization",
+      "name": "Bucks County Home Value Now",
+      "url": "https://buckscountyhomevaluenow.com/",
+      "description": "AI-powered home value estimates for Bucks County, Pennsylvania homeowners.",
+      "disambiguatingDescription": "This platform is not a licensed real estate brokerage and does not provide appraisals, CMAs, broker price opinions, or official valuations."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://buckscountyhomevaluenow.com/#website",
+      "name": "Bucks County Home Value Now",
+      "url": "https://buckscountyhomevaluenow.com/",
+      "publisher": { "@id": "https://buckscountyhomevaluenow.com/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://buckscountyhomevaluenow.com/bucks-county-home-value-estimator.html#webpage",
+      "url": "https://buckscountyhomevaluenow.com/bucks-county-home-value-estimator.html",
+      "name": "Bucks County Home Value Estimator | Free AI Estimate",
+      "description": "Get a free AI-generated Bucks County home value estimate built on real local sales data. No pressure, no sign-up required. See your estimate in 60 seconds.",
+      "isPartOf": { "@id": "https://buckscountyhomevaluenow.com/#website" },
+      "publisher": { "@id": "https://buckscountyhomevaluenow.com/#organization" },
+      "breadcrumb": { "@id": "https://buckscountyhomevaluenow.com/bucks-county-home-value-estimator.html#breadcrumb" },
+      "about": { "@type": "AdministrativeArea", "name": "Bucks County", "containedInPlace": { "@type": "State", "name": "Pennsylvania" } }
+    },
+    {
+      "@type": "Article",
+      "headline": "Bucks County Home Value Estimator",
+      "description": "Free AI-powered Bucks County home value estimate using local sales data and property details.",
+      "mainEntityOfPage": { "@id": "https://buckscountyhomevaluenow.com/bucks-county-home-value-estimator.html#webpage" },
+      "publisher": { "@id": "https://buckscountyhomevaluenow.com/#organization" },
+      "author": { "@id": "https://buckscountyhomevaluenow.com/#organization" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is this a professional appraisal?", "acceptedAnswer": { "@type": "Answer", "text": "No. These are AI-generated estimates. They are not professional appraisals, not CMAs, not broker price opinions, and not official valuations." } },
+        { "@type": "Question", "name": "How do I estimate my home value?", "acceptedAnswer": { "@type": "Answer", "text": "Enter your location, answer a few questions, and review your estimated value range on the homepage estimate tool." } },
+        { "@type": "Question", "name": "What is the most accurate estimator?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your property and whether the tool uses more than an address. Treat every automated figure as directional." } },
+        { "@type": "Question", "name": "How often is data updated?", "acceptedAnswer": { "@type": "Answer", "text": "Public records and model refresh timing vary. Verify anything material before you act." } },
+        { "@type": "Question", "name": "Can I sell based on this?", "acceptedAnswer": { "@type": "Answer", "text": "Do not rely on one estimate for major decisions. Confirm with appropriate experts when it matters." } }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://buckscountyhomevaluenow.com/bucks-county-home-value-estimator.html#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://buckscountyhomevaluenow.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Bucks County Home Value Estimator", "item": "https://buckscountyhomevaluenow.com/bucks-county-home-value-estimator.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Bucks County<br><span>Home Value Now</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="index.html#estimate" class="nav-btn">Get My Estimate <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></li>
+  </ul>
+</nav>
+
+<section class="hero hero-page">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      <span>Bucks County Home Value Estimator</span>
+    </div>
+    <h1 class="hero-h1">What Is Your <span class="accent">Bucks County</span> Home Worth?</h1>
+    <p class="hero-desc">Get a free AI-generated Bucks County home value estimate built on real local sales data. No pressure, no sign-up required. See your estimate in 60 seconds.</p>
+    <div class="hero-cta">
+      <a href="index.html#estimate" class="btn-primary">Get Your Free AI Home Value Estimate <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <p style="font-size:0.95rem;color:var(--muted);line-height:1.65;margin-bottom:20px;max-width:540px;">Free to use · Bucks County focused · Takes about 60 seconds</p>
+    <p class="card-disclaimer" style="text-align:left;margin-left:0;max-width:640px;margin-top:0;">Estimates are AI-generated using public data and your inputs. They are not professional appraisals, CMAs, broker price opinions, or official valuations.</p>
+  </div>
+</section>
+
+<section class="section how-section" id="quick-answer">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="step-card reveal" style="max-width:720px;">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Quick answer</p>
+      <h2 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:12px;line-height:1.35;">What is the best way to estimate my Bucks County home value?</h2>
+      <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;margin-bottom:14px;">The best starting point is to use a Bucks County-focused estimator that combines recent local sales data with details about your home’s condition, updates, location, and features.</p>
+      <ul style="font-size:0.9rem;color:var(--muted);line-height:1.65;margin:0 0 4px 1.15rem;">
+        <li style="margin-bottom:6px;">Start with <a href="index.html#estimate" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.28);">your free AI estimate on the homepage</a>.</li>
+        <li style="margin-bottom:6px;">See <a href="what-is-my-home-worth-in-bucks-county.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.28);">what your home may be worth in Bucks County</a> for a fuller overview.</li>
+        <li style="margin-bottom:6px;">If you are weighing a sale, read the <a href="sell-my-house-bucks-county.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.28);">Sell My House in Bucks County guide</a>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="why-different">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">Why this Bucks County home value estimator is different</h2>
+    </div>
+    <div class="reveal">
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">It can weigh details that generic “address only” tools often miss, such as:</p>
+      <ul style="font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 1.25rem 1.25rem;max-width:720px;">
+        <li style="margin-bottom:0.45rem;">kitchen renovated</li>
+        <li style="margin-bottom:0.45rem;">roof or HVAC replaced</li>
+        <li style="margin-bottom:0.45rem;">basement finished</li>
+        <li style="margin-bottom:0.45rem;">lot backs to preserved land</li>
+        <li style="margin-bottom:0.45rem;">premium street / canal / borough proximity</li>
+      </ul>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1.25rem;">Outputs are <strong>AI-generated estimates</strong>. They are <strong>not professional appraisals</strong>, <strong>not CMAs</strong>, <strong>not broker price opinions</strong>, and <strong>not official valuations</strong>.</p>
+      <a href="index.html#estimate" class="btn-primary">See My Bucks County Estimate <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section how-section" id="local-context">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">Why local context matters in Bucks County</h2>
+    </div>
+    <div class="reveal">
+      <ul style="font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 0 1.25rem;max-width:720px;">
+        <li style="margin-bottom:0.45rem;">township and borough location</li>
+        <li style="margin-bottom:0.45rem;">school district</li>
+        <li style="margin-bottom:0.45rem;">neighborhood turnover</li>
+        <li style="margin-bottom:0.45rem;">comparable sales</li>
+        <li style="margin-bottom:0.45rem;">lot usability</li>
+        <li style="margin-bottom:0.45rem;">buyer demand</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how-it-works">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">How the AI home value estimator works</h2>
+    </div>
+    <div class="steps-row">
+      <div class="step-card reveal"><div class="step-num">1</div><h3>Enter your location</h3></div>
+      <div class="step-card reveal reveal-delay-1"><div class="step-num">2</div><h3>Answer a few questions</h3></div>
+      <div class="step-card reveal reveal-delay-2"><div class="step-num">3</div><h3>Get your estimated value range</h3></div>
+    </div>
+    <p style="font-size:0.92rem;color:var(--muted);line-height:1.65;margin-top:24px;max-width:720px;" class="reveal">These are <strong>AI-generated estimates</strong> using public data and your inputs. They are <strong>not professional appraisals</strong>, <strong>not CMAs</strong>, <strong>not broker price opinions</strong>, and <strong>not official valuations</strong>.</p>
+    <div style="margin-top:28px;" class="reveal">
+      <a href="index.html#estimate" class="btn-primary">Start My Free Estimate <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section market-section" id="best-estimator">
+  <div style="max-width:1140px;margin:0 auto;position:relative;z-index:1;">
+    <div class="section-head reveal">
+      <h2 class="section-title">What is the best online home value estimator for Bucks County?</h2>
+    </div>
+    <div class="reveal">
+      <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--gold-light);margin:1.5rem 0 0.65rem;">Bucks County Home Value Now</h3>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.72);line-height:1.75;max-width:720px;margin-bottom:1rem;">Built for Bucks County homeowners who want a fast estimate that can incorporate your inputs—not only your address.</p>
+      <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--gold-light);margin:1.25rem 0 0.65rem;">Zillow Zestimate</h3>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.72);line-height:1.75;max-width:720px;margin-bottom:1rem;">A well-known national estimate that many buyers and sellers recognize.</p>
+      <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--gold-light);margin:1.25rem 0 0.65rem;">Redfin Estimate</h3>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.72);line-height:1.75;max-width:720px;margin-bottom:1rem;">Another widely used automated value view tied to a national real estate experience.</p>
+      <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--gold-light);margin:1.25rem 0 0.65rem;">Realtor.com</h3>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.72);line-height:1.75;max-width:720px;margin-bottom:1rem;">Often includes listing-market signals buyers browse while shopping online.</p>
+      <p style="font-size:1.08rem;color:var(--white);line-height:1.7;max-width:720px;margin-top:1.5rem;font-weight:500;">Bottom line:<br>Start with a tool that asks about your home, not just your address.</p>
+      <p style="font-size:0.92rem;color:rgba(255,255,255,0.55);line-height:1.65;margin-top:1rem;max-width:720px;">Any automated output here is an <strong>AI-generated estimate</strong>. It is <strong>not a professional appraisal</strong>, <strong>not a CMA</strong>, <strong>not a broker price opinion</strong>, and <strong>not an official valuation</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section how-section" id="free-ai">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">Are there free AI home value estimators for Bucks County?</h2>
+    </div>
+    <div class="reveal">
+      <ul style="font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 0 1.25rem;max-width:720px;">
+        <li style="margin-bottom:0.45rem;">Yes</li>
+        <li style="margin-bottom:0.45rem;">No sign-up required</li>
+        <li style="margin-bottom:0.45rem;">No sales pressure</li>
+        <li style="margin-bottom:0.45rem;">Estimate comes first</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="areas">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">Bucks County home values by area</h2>
+    </div>
+    <div class="reveal">
+      <ul style="font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 1.25rem 1.25rem;max-width:720px;">
+        <li style="margin-bottom:0.45rem;">Doylestown</li>
+        <li style="margin-bottom:0.45rem;">Newtown</li>
+        <li style="margin-bottom:0.45rem;">Yardley</li>
+        <li style="margin-bottom:0.45rem;">Warminster</li>
+        <li style="margin-bottom:0.45rem;">New Hope</li>
+        <li style="margin-bottom:0.45rem;">Quakertown</li>
+        <li style="margin-bottom:0.45rem;">Richboro</li>
+        <li style="margin-bottom:0.45rem;">Buckingham</li>
+        <li style="margin-bottom:0.45rem;">Bristol / Levittown</li>
+      </ul>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1.25rem;">Market ranges shift. If exact numbers are shown, they must be verified before publishing.</p>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:0.5rem;">Related topics:</p>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.85;max-width:720px;">
+        <a href="doylestown-home-values.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.25);">Doylestown home values</a><span style="color:var(--muted);"> · </span>
+        <a href="newtown-home-values.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.25);">Newtown home values</a><span style="color:var(--muted);"> · </span>
+        <a href="yardley-home-values.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.25);">Yardley home values</a><span style="color:var(--muted);"> · </span>
+        <a href="quakertown-home-values.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.25);">Quakertown home values</a><span style="color:var(--muted);"> · </span>
+        <a href="buckingham-township-home-values.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.25);">Buckingham Township home values</a><span style="color:var(--muted);"> · </span>
+        <a href="bucks-county-housing-market-2026.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.25);">Bucks County housing market 2026</a>
+      </p>
+      <div style="margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;">
+        <span aria-hidden="true" style="font-size:1.15rem;line-height:1;">👉</span>
+        <a href="index.html#estimate" class="btn-primary" style="display:inline-flex;">Get Your Bucks County Home Value <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section how-section" id="factors">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">What factors does the AI use to estimate your home value?</h2>
+    </div>
+    <div class="reveal">
+      <ol style="font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 0 1.25rem;max-width:720px;list-style:decimal;padding-left:0.5rem;">
+        <li style="margin-bottom:0.45rem;margin-left:0.5rem;">Location</li>
+        <li style="margin-bottom:0.45rem;margin-left:0.5rem;">Comparable sales</li>
+        <li style="margin-bottom:0.45rem;margin-left:0.5rem;">Condition and updates</li>
+        <li style="margin-bottom:0.45rem;margin-left:0.5rem;">Lot and setting</li>
+        <li style="margin-bottom:0.45rem;margin-left:0.5rem;">Market activity</li>
+      </ol>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-top:1rem;">These inputs still produce <strong>AI-generated estimates</strong>. They are <strong>not professional appraisals</strong>, <strong>not CMAs</strong>, <strong>not broker price opinions</strong>, and <strong>not official valuations</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="accuracy">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">How accurate are online home value estimators?</h2>
+    </div>
+    <div class="reveal">
+      <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin:0 0 0.65rem;">Where they work well</h3>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">When comparable sales are plentiful and the home is similar to recent neighborhood sales.</p>
+      <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin:1.25rem 0 0.65rem;">Where they struggle</h3>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">When the property is unique, data is thin, or condition and updates are hard to observe from public records alone.</p>
+      <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin:1.25rem 0 0.65rem;">What public tools miss</h3>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">On-the-ground quality, micro-location appeal, and execution details that can move price outside a model range.</p>
+      <p style="font-size:1.08rem;color:var(--ink);line-height:1.7;max-width:720px;margin-top:1.25rem;font-weight:500;">Bottom line:<br>Do not rely on one estimate for major decisions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section how-section" id="rely">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">Should you rely on an online estimate?</h2>
+    </div>
+    <div class="reveal">
+      <p style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:0.65rem;">Helps you:</p>
+      <ul style="font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 1.25rem 1.25rem;max-width:720px;">
+        <li style="margin-bottom:0.45rem;">rough value range</li>
+        <li style="margin-bottom:0.45rem;">market position</li>
+        <li style="margin-bottom:0.45rem;">selling decision</li>
+      </ul>
+      <p style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:0.65rem;">Should not be:</p>
+      <ul style="font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 0 1.25rem;max-width:720px;">
+        <li style="margin-bottom:0.45rem;">guaranteed price</li>
+        <li style="margin-bottom:0.45rem;">appraisal</li>
+        <li style="margin-bottom:0.45rem;">replacement for expert advice</li>
+      </ul>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-top:1.25rem;">Reminder: <strong>AI-generated estimates</strong> are <strong>not professional appraisals</strong>, <strong>not CMAs</strong>, <strong>not broker price opinions</strong>, and <strong>not official valuations</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="final-cta">
+  <div class="cta-inner reveal">
+    <h2 class="section-title">Get your free Bucks County home value estimate now</h2>
+    <div style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:8px;">
+      <a href="index.html#estimate" class="btn-primary" style="display:inline-flex;">Get Your Free AI Home Value Estimate <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="contact.html" class="btn-ghost">Request a More Detailed Local Review</a>
+    </div>
+    <p class="section-desc" style="margin-top:12px;margin-bottom:0;">Estimates are <strong>AI-generated</strong> using public data and your inputs. They are <strong>not professional appraisals</strong>, <strong>not CMAs</strong>, <strong>not broker price opinions</strong>, and <strong>not official valuations</strong>.</p>
+  </div>
+</section>
+
+<section class="section how-section" id="faq">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">Frequently asked questions</h2>
+    </div>
+    <div style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:20px;">
+      <div class="step-card reveal">
+        <h3>Is this a professional appraisal?</h3>
+        <p>No. These are <strong>AI-generated estimates</strong>. They are <strong>not professional appraisals</strong>, <strong>not CMAs</strong>, <strong>not broker price opinions</strong>, and <strong>not official valuations</strong>.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-1">
+        <h3>How do I estimate my home value?</h3>
+        <p>Enter your location, answer a few questions, and review your estimated value range on <a href="index.html#estimate" style="color:var(--forest);font-weight:600;border-bottom:1px solid rgba(44,74,62,0.25);">the homepage estimate tool</a>.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <h3>What is the most accurate estimator?</h3>
+        <p>It depends on your property and whether the tool uses more than an address. Treat every automated figure as directional.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <h3>How often is data updated?</h3>
+        <p>Public records and model refresh timing vary. Verify anything material before you act.</p>
+      </div>
+      <div class="step-card reveal">
+        <h3>Can I sell based on this?</h3>
+        <p>Do not rely on one estimate for major decisions. Confirm with appropriate experts when it matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section how-section" style="padding-top:48px;padding-bottom:56px;">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="reveal" style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;">
+      <span aria-hidden="true" style="font-size:1.15rem;line-height:1;">👉</span>
+      <a href="index.html#estimate" class="btn-primary" style="display:inline-flex;">Get Your Bucks County Home Value <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer id="legal">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Bucks County <span>Home Value Now</span></div>
+      <p class="footer-about">AI-powered home value estimates for Bucks County, Pennsylvania homeowners. Free, local, and built on real sales data.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#market">Market Insights</a></li>
+        <li><a href="index.html#why">Why It Works</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="#">For Agents</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Bucks County Home Value Now · <a href="https://buckscountyhomevaluenow.com">buckscountyhomevaluenow.com</a></p>
+    <p style="margin-top:6px; font-weight:500; color:rgba(255,255,255,0.45);">Bucks County Home Value Now is a lead generation and AI insights platform. It is not a licensed real estate brokerage and does not represent buyers or sellers.</p>
+    <p>Home value estimates provided by this platform are automated AI-generated estimates using public market data and recent comparable sales activity. They are not professional appraisals, broker price opinions, or official valuations of any kind. Estimates may vary from actual market sale prices.</p>
+    <p style="margin-top:6px;">This platform connects users with licensed real estate professionals and does not itself provide brokerage services, represent buyers or sellers, or negotiate real estate transactions.</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
