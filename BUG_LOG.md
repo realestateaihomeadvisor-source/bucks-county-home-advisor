@@ -61,7 +61,7 @@ DO NOT CHANGE autostart TO false. Ever. This breaks the greeting.
 ### BUG-006: Wrong Voiceflow project being edited
 **Status**: RESOLVED ✅ (awareness fix)  
 **What happened**: Two Voiceflow projects exist. Edits were being made to the wrong one repeatedly.  
-**Fix**: Only ever use project ID `69c64d82ea3646d26e12d74d` — "Bucks County Home Advisor". Ignore any other project.
+**Fix**: Only ever use project ID `69f50f88a614bbd04a9aea1a` — "Bucks County Home Advisor". Ignore any other project.
 
 ---
 
