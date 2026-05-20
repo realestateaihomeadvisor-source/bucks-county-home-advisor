@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Is Now a Good Time to Sell in Bucks County? | 2026</title>
+<meta name="description" content="See what current 2026 Bucks County market conditions may mean for your home's price, days on market, and best time to list."/>
+<link rel="canonical" href="https://buckscountyhomevaluenow.com/is-now-a-good-time-to-sell-bucks-county.html"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --forest:      #2c4a3e;
+  --forest-mid:  #3d6355;
+  --forest-light:#4e7a67;
+  --gold:        #c9973a;
+  --gold-light:  #e8b84b;
+  --gold-pale:   rgba(201,151,58,0.12);
+  --cream:       #f8f4ee;
+  --warm:        #f0e9df;
+  --warm-mid:    #e8ddd2;
+  --ink:         #1c1c1a;
+  --ink-mid:     #3a3a38;
+  --muted:       #6b6560;
+  --white:       #ffffff;
+  --shadow-sm:   0 2px 8px rgba(26,26,26,0.08);
+  --shadow-md:   0 8px 30px rgba(26,26,26,0.12);
+  --shadow-lg:   0 20px 60px rgba(26,26,26,0.15);
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; }
+button { font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; }
+
+.vf-chat-header__badge,
+.vf-badge,
+[class*="badge"] {
+  display: none !important;
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold);
+}
+.eyebrow::before {
+  content: '';
+  display: block; width: 20px; height: 2px;
+  background: var(--gold); border-radius: 2px;
+  flex-shrink: 0;
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.1; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes glow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 52px; height: 68px;
+  background: rgba(248,244,238,0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201,151,58,0.12);
+  animation: fadeIn 0.5s ease both;
+}
+
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 1rem;
+  color: var(--forest); line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.nav-brand span { color: var(--gold); }
+
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--muted); letter-spacing: 0.02em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--forest); }
+
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold); color: var(--white) !important;
+  font-size: 0.85rem; font-weight: 600;
+  padding: 10px 22px; border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 3px 12px rgba(201,151,58,0.35);
+}
+.nav-btn:hover { background: var(--gold-light); color: var(--white) !important; transform: translateY(-1px); }
+
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 65% 40%, rgba(201,151,58,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 5% 80%, rgba(44,74,62,0.07) 0%, transparent 60%);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(201,151,58,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,151,58,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.hero.hero-page {
+  min-height: 100vh;
+  padding: 100px 52px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left { position: relative; z-index: 2; max-width: 640px; }
+
+.live-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(44,74,62,0.07);
+  border: 1px solid rgba(44,74,62,0.18);
+  padding: 7px 16px 7px 10px; border-radius: 100px;
+  margin-bottom: 30px;
+  animation: fadeUp 0.6s ease both;
+}
+.live-dot {
+  width: 8px; height: 8px;
+  background: #4ade80; border-radius: 50%;
+  animation: glow 2s ease-in-out infinite;
+  box-shadow: 0 0 6px #4ade80;
+}
+.live-badge span { font-size: 0.78rem; font-weight: 600; color: var(--forest); letter-spacing: 0.04em; }
+
+.hero-h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900;
+  color: var(--ink); line-height: 1.1; margin-bottom: 20px;
+  animation: fadeUp 0.6s 0.08s ease both; letter-spacing: -0.02em;
+}
+.hero-h1 .accent { color: var(--forest); font-style: italic; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--forest); color: var(--white);
+  font-size: 1rem; font-weight: 600;
+  padding: 17px 34px; border-radius: var(--radius-sm);
+  letter-spacing: 0.01em;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 6px 24px rgba(44,74,62,0.28);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(44,74,62,0.35); background: var(--forest-mid); }
+.btn-primary .arrow { transition: transform 0.2s; flex-shrink: 0; }
+.btn-primary:hover .arrow { transform: translateX(4px); }
+
+.card-disclaimer {
+  font-size: 0.82rem; color: var(--muted);
+  line-height: 1.6; max-width: 640px;
+}
+
+.hero-right { position: relative; z-index: 2; animation: fadeUp 0.7s 0.2s ease both; }
+.card-wrap { position: relative; }
+
+.card-shadow-deco {
+  position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px;
+  background: var(--forest); border-radius: var(--radius-xl);
+  opacity: 0.12; z-index: 0;
+}
+
+.chatbot-card {
+  position: relative; z-index: 1;
+  background: var(--white); border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg); overflow: hidden;
+  border: 1px solid rgba(240,233,223,0.9);
+  max-width: 500px; margin-left: auto;
+}
+
+.card-header {
+  background: var(--forest); padding: 20px 26px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.advisor-info { display: flex; align-items: center; gap: 13px; }
+.advisor-avatar {
+  width: 42px; height: 42px;
+  background: rgba(201,151,58,0.2); border: 2px solid rgba(201,151,58,0.35);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.advisor-name { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 3px; font-family: 'DM Sans', sans-serif; }
+.advisor-status { display: flex; align-items: center; gap: 6px; font-size: 0.73rem; color: rgba(255,255,255,0.6); }
+.status-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; animation: glow 2s ease-in-out infinite; }
+.card-badge {
+  background: rgba(201,151,58,0.2); border: 1px solid rgba(201,151,58,0.35);
+  padding: 4px 12px; border-radius: 100px;
+  font-size: 0.7rem; font-weight: 600; color: var(--gold-light);
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
+
+.hero-right .card-disclaimer {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.82rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-right .card-disclaimer a { color: var(--gold); border-bottom: 1px solid rgba(201,151,58,0.3); }
+
+.section { padding: 96px 52px; }
+.section-head { margin-bottom: 48px; }
+.section-title { font-size: clamp(2rem, 3.2vw, 2.8rem); font-weight: 900; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.02em; }
+
+.how-section { background: var(--white); }
+
+.market-section { background: var(--forest); position: relative; overflow: hidden; }
+.market-section::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,151,58,0.12) 0%, transparent 60%); border-radius: 50%; pointer-events: none; }
+.market-section .section-title { color: var(--white); }
+.market-section .eyebrow { color: var(--gold-light); }
+.market-section .eyebrow::before { background: var(--gold-light); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 26px 20px; text-align: center; transition: background 0.25s, transform 0.25s; position: relative; z-index: 1; }
+.stat-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 1.85rem; font-weight: 900; color: var(--gold-light); margin-bottom: 8px; line-height: 1.15; }
+.stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.62); line-height: 1.45; }
+.stat-trend { display: inline-block; margin-top: 10px; font-size: 0.72rem; font-weight: 600; color: #4ade80; background: rgba(74,222,128,0.12); padding: 3px 10px; border-radius: 100px; }
+
+.step-card {
+  background: var(--cream); border: 1px solid rgba(201,151,58,0.14);
+  border-radius: var(--radius-lg); padding: 28px 26px 24px;
+}
+.step-card h3 { font-family: 'DM Sans', sans-serif; font-size: 1.02rem; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+.step-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+.town-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px 24px; max-width: 900px; }
+.town-grid a { font-size: 1rem; font-weight: 500; color: var(--forest); border-bottom: 1px solid rgba(44,74,62,0.28); padding-bottom: 2px; display: inline-block; width: fit-content; }
+.town-grid a:hover { color: var(--forest-mid); }
+
+footer { background: var(--ink); padding: 52px 52px 36px; }
+.footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.footer-brand-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.footer-brand-name span { color: var(--gold); }
+.footer-about { font-size: 0.83rem; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 280px; }
+.footer-col h4 { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { font-size: 0.85rem; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; }
+.footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.3); line-height: 1.7; margin-bottom: 8px; }
+.footer-bottom a { color: rgba(201,151,58,0.7); }
+
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero.hero-page { grid-template-columns: 1fr; padding: 88px 24px 48px; gap: 44px; }
+  .chatbot-card { max-width: 100%; }
+  .card-shadow-deco { display: none; }
+  .section { padding: 72px 24px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  footer { padding: 48px 24px 32px; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://buckscountyhomevaluenow.com/#organization",
+      "name": "Bucks County Home Value Now",
+      "url": "https://buckscountyhomevaluenow.com/",
+      "description": "AI-powered home value estimates for Bucks County, Pennsylvania homeowners.",
+      "disambiguatingDescription": "This platform is not a licensed real estate brokerage and does not provide appraisals, CMAs, broker price opinions, or official valuations."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://buckscountyhomevaluenow.com/#website",
+      "name": "Bucks County Home Value Now",
+      "url": "https://buckscountyhomevaluenow.com/",
+      "publisher": { "@id": "https://buckscountyhomevaluenow.com/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://buckscountyhomevaluenow.com/is-now-a-good-time-to-sell-bucks-county.html#webpage",
+      "url": "https://buckscountyhomevaluenow.com/is-now-a-good-time-to-sell-bucks-county.html",
+      "name": "Is Now a Good Time to Sell in Bucks County? | 2026",
+      "description": "See what current 2026 Bucks County market conditions may mean for your home's price, days on market, and best time to list.",
+      "isPartOf": { "@id": "https://buckscountyhomevaluenow.com/#website" },
+      "publisher": { "@id": "https://buckscountyhomevaluenow.com/#organization" },
+      "breadcrumb": { "@id": "https://buckscountyhomevaluenow.com/is-now-a-good-time-to-sell-bucks-county.html#breadcrumb" },
+      "about": { "@type": "AdministrativeArea", "name": "Bucks County", "containedInPlace": { "@type": "State", "name": "Pennsylvania" } }
+    },
+    {
+      "@type": "Article",
+      "headline": "Is Now a Good Time to Sell in Bucks County?",
+      "description": "2026 seller timing, inventory, and market signals for Bucks County homeowners.",
+      "mainEntityOfPage": { "@id": "https://buckscountyhomevaluenow.com/is-now-a-good-time-to-sell-bucks-county.html#webpage" },
+      "publisher": { "@id": "https://buckscountyhomevaluenow.com/#organization" },
+      "author": { "@id": "https://buckscountyhomevaluenow.com/#organization" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What if I need to buy after selling in Bucks County?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Buying after selling in a seller's market requires planning, but it is very manageable with the right local agent. The key is knowing your financial position after the sale, having a target area in mind, and moving quickly when the right home comes up. A local agent can help you structure this before you list."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is inventory helping sellers in Bucks County right now?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. With only 1.7 months of supply and more homes under contract than active listings, sellers have a significant advantage. Buyers are competing for limited options, which means faster offers, stronger prices, and fewer concessions for sellers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I get an estimate before deciding whether to sell?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. Understanding your home's current value is the most important first step. It tells you what you stand to gain, helps you plan your next move, and gives you a realistic baseline before any conversations about listing or timing."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://buckscountyhomevaluenow.com/is-now-a-good-time-to-sell-bucks-county.html#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://buckscountyhomevaluenow.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Is Now a Good Time to Sell in Bucks County?", "item": "https://buckscountyhomevaluenow.com/is-now-a-good-time-to-sell-bucks-county.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Bucks County<br><span>Home Value Now</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="index.html#market">Market Data</a></li>
+    <li><a href="index.html#why">Why Us</a></li>
+    <li><a href="#chatbot" class="nav-btn">Get My Estimate <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></li>
+  </ul>
+</nav>
+
+<section class="hero hero-page" id="estimate">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      <span>Seller timing · Bucks County 2026</span>
+    </div>
+    <h1 class="hero-h1">Is Now a Good Time to Sell in <span class="accent">Bucks County</span>?</h1>
+    <p style="font-size:1.08rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:18px;">Based on current market data, yes. Bucks County is running at 6 median days on market, a 102% sale to list price ratio, and over half of all homes are selling above asking price. If you have been weighing whether to sell now or wait, the numbers give you a clear picture to work with.</p>
+    <p class="card-disclaimer" style="margin-bottom:22px;">Estimates are AI-generated using public data and your inputs. They are not professional appraisals, CMAs, broker price opinions, or official valuations.</p>
+    <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:16px;">
+      <a href="#chatbot" class="btn-primary">See Where Your Home Stands <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+    <p style="font-size:0.95rem;color:var(--muted);line-height:1.65;">Free to use · Bucks County focused · Takes under two minutes</p>
+  </div>
+
+  <div class="hero-right" id="chatbot">
+    <div class="card-wrap">
+      <div class="card-shadow-deco"></div>
+      <div class="chatbot-card">
+        <div class="card-header">
+          <div class="advisor-info">
+            <div class="advisor-avatar">🏠</div>
+            <div>
+              <div class="advisor-name">Bucks County Home Advisor</div>
+              <div class="advisor-status"><span class="status-dot"></span> Online now · Responds instantly</div>
+            </div>
+          </div>
+          <div class="card-badge">Free</div>
+        </div>
+        <div style="width:100%; height:520px; border-radius:0 0 28px 28px; overflow:hidden; position:relative;">
+          <div id="vf-chat-embed" style="width:100%; height:580px; margin-top:-58px;"></div>
+        </div>
+      </div>
+    </div>
+    <p class="card-disclaimer">
+      Estimates are AI-generated using public market data and are not professional appraisals or official valuations.
+      <a href="#legal">Learn more</a>
+    </p>
+  </div>
+</section>
+
+<section class="section market-section" id="conditions">
+  <div style="max-width:1140px;margin:0 auto;position:relative;z-index:1;">
+    <div class="section-head reveal">
+      <div class="eyebrow">April 2026 data</div>
+      <h2 class="section-title">What Do Current Market Conditions Say?</h2>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.72);line-height:1.75;max-width:720px;">The Bucks County housing market in 2026 is firmly in seller's market territory. Here is what the April 2026 data shows:</p>
+    </div>
+    <div class="stats-grid reveal">
+      <div class="stat-card"><div class="stat-num">$527,251</div><div class="stat-label">Median sale price · up 7% year over year</div><div class="stat-trend">↑ YoY</div></div>
+      <div class="stat-card reveal-delay-1"><div class="stat-num">6</div><div class="stat-label">Median days on market</div></div>
+      <div class="stat-card reveal-delay-2"><div class="stat-num">102%</div><div class="stat-label">Sale to list price ratio</div></div>
+      <div class="stat-card reveal-delay-1"><div class="stat-num">51%</div><div class="stat-label">Homes sold above asking price</div></div>
+      <div class="stat-card"><div class="stat-num">1.7</div><div class="stat-label">Months of inventory</div></div>
+      <div class="stat-card reveal-delay-1"><div class="stat-num">926 vs 772</div><div class="stat-label">Homes under contract vs active listings</div></div>
+    </div>
+    <p style="font-size:1.05rem;color:rgba(255,255,255,0.72);line-height:1.75;max-width:720px;margin-top:36px;" class="reveal">There are more buyers under contract right now than there are active homes on the market. That is a strong signal for anyone considering listing.</p>
+  </div>
+</section>
+
+<section class="section how-section" id="inventory">
+  <div style="max-width:1140px;margin:0 auto;">
+    <h2 class="section-title reveal">Is Inventory Helping Sellers in Bucks County?</h2>
+    <div class="reveal">
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">Yes, significantly. With only 1.7 months of supply available countywide, buyers have very few options to choose from. A balanced market sits at 4 to 6 months of inventory. Bucks County is well below that threshold across almost every price range under $1.1 million.</p>
+      <p style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin:1.25rem 0 0.65rem;">What low inventory means for sellers in practical terms:</p>
+      <ul style="font-size:1.05rem;color:var(--muted);line-height:1.75;margin:0 0 1.5rem 1.25rem;max-width:720px;">
+        <li style="margin-bottom:0.45rem;">Buyers move faster and with less hesitation</li>
+        <li style="margin-bottom:0.45rem;">Competing offers are common across most townships</li>
+        <li style="margin-bottom:0.45rem;">Sellers have more control over closing timelines and terms</li>
+        <li style="margin-bottom:0.45rem;">Buyers are less likely to push back on the condition or request repairs</li>
+      </ul>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1.5rem;">If you are a seller, low inventory is working in your favor right now.</p>
+      <a href="#chatbot" class="btn-primary">See My Estimate <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="sell-now">
+  <div style="max-width:1140px;margin:0 auto;">
+    <h2 class="section-title reveal">Should I Sell My House Now in Bucks County?</h2>
+    <div class="reveal">
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1.25rem;">For most homeowners, the current conditions make a strong case for acting sooner rather than later. Prices are up, competition among buyers is high, and homes are moving in under a week on average.</p>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1.25rem;">That said, selling is a personal decision that depends on more than market timing. Here are the most common seller scenarios and what the current market means for each.</p>
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:720px;">
+        <div>
+          <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:8px;">You are ready to move and have a plan for your next home.</h3>
+          <p style="font-size:1.02rem;color:var(--muted);line-height:1.7;">This is the strongest position to sell from right now. Demand is high, prices are favorable, and you can move with confidence.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:8px;">You are waiting to see if prices go higher.</h3>
+          <p style="font-size:1.02rem;color:var(--muted);line-height:1.7;">Prices have risen 7% year over year, and the market is already performing at a high level. Waiting for further gains carries the risk of increased inventory or softening demand later in 2026.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:8px;">You need to buy after selling.</h3>
+          <p style="font-size:1.02rem;color:var(--muted);line-height:1.7;">This is the most common concern for Bucks County homeowners. Selling in a seller's market means you will also be buying in one. Timing, bridging, and your next purchase strategy matter here. A local agent can help you map this out before you commit to listing.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:8px;">Your home needs work before listing.</h3>
+          <p style="font-size:1.02rem;color:var(--muted);line-height:1.7;">Even in a strong market, conditions affect your outcome. Homes that show well consistently outperform those with deferred maintenance, even when buyer demand is high.</p>
+        </div>
+      </div>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-top:1.75rem;margin-bottom:1.25rem;">Not sure where your home stands in today's market? Get a free AI-powered estimate built on real Bucks County sales data and find out in under two minutes.</p>
+      <a href="#chatbot" class="btn-primary">See Where Your Home Stands <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section how-section" id="buy-after">
+  <div style="max-width:1140px;margin:0 auto;">
+    <h2 class="section-title reveal">What If I Need to Buy After Selling?</h2>
+    <div class="reveal">
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">This is one of the most common questions Bucks County homeowners ask and it is worth addressing directly.</p>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">Selling in a competitive market is straightforward. Buying in one requires more planning. The good news is that local agents who work this market daily know how to structure offers, negotiate timelines, and position you competitively as a buyer even after a quick sale.</p>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;">The key is having a clear plan before you list. Know where you are going, what your budget looks like after the sale, and what your timeline flexibility is. A local Bucks County agent can walk you through all of this at no cost before you make any decisions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="by-town">
+  <div style="max-width:1140px;margin:0 auto;">
+    <h2 class="section-title reveal">Explore Bucks County Home Values by Town</h2>
+    <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1.25rem;" class="reveal">Market conditions vary across Bucks County townships. If you want a more specific picture of what homes are selling for in your area, explore the local pages below.</p>
+    <div class="town-grid reveal">
+      <a href="doylestown-home-values.html">Doylestown Home Values</a>
+      <a href="newtown-home-values.html">Newtown Home Values</a>
+      <a href="yardley-home-values.html">Yardley Home Values</a>
+      <a href="quakertown-home-values.html">Quakertown Home Values</a>
+      <a href="warrington-home-values.html">Warrington Home Values</a>
+      <a href="richboro-home-values.html">Richboro Home Values</a>
+      <a href="buckingham-township-home-values.html">Buckingham Township Home Values</a>
+      <a href="northampton-township-home-values.html">Northampton Township Home Values</a>
+    </div>
+    <p style="font-size:0.95rem;color:var(--muted);line-height:1.65;max-width:720px;margin-top:1.5rem;" class="reveal">Each page covers recent sales activity, local pricing trends, and what current conditions mean for homeowners in that specific area.</p>
+  </div>
+</section>
+
+<section class="section how-section" id="estimate-first">
+  <div style="max-width:1140px;margin:0 auto;">
+    <h2 class="section-title reveal">Should I Get an Estimate Before Deciding?</h2>
+    <div class="reveal">
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">Yes. Knowing your home's current value is the most useful first step before making any timing decision.</p>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">An accurate estimate tells you what you are working with financially, helps you understand where your home sits relative to current comparable sales, and gives you a realistic picture of what selling today would actually mean for you.</p>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:720px;margin-bottom:1rem;">Use the AI estimator below to get a locally grounded starting point based on your specific home. If you want to go deeper, a free Comparative Market Analysis from a local Bucks County agent gives you a number precise enough to make real decisions with.</p>
+      <p class="card-disclaimer" style="margin-bottom:1.25rem;max-width:720px;">This site's AI outputs are not professional appraisals, CMAs, broker price opinions, or official valuations. A licensed agent provides brokerage-level pricing analysis separately.</p>
+      <a href="#chatbot" class="btn-primary">See Where Your Home Stands <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="related">
+  <div style="max-width:1140px;margin:0 auto;">
+    <h2 class="section-title reveal" style="font-size:clamp(1.5rem,2.5vw,2rem);">Related guides</h2>
+    <p style="font-size:1.02rem;color:var(--muted);line-height:1.75;max-width:720px;" class="reveal">
+      <a href="bucks-county-housing-market-2026.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.28);">Bucks County Housing Market 2026</a><span style="color:var(--muted);"> · </span>
+      <a href="sell-my-house-bucks-county.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.28);">Sell My House in Bucks County</a><span style="color:var(--muted);"> · </span>
+      <a href="bucks-county-home-value-estimator.html" style="color:var(--forest);font-weight:500;border-bottom:1px solid rgba(44,74,62,0.28);">Home Value Estimator</a>
+    </p>
+  </div>
+</section>
+
+<section class="section how-section" id="faq">
+  <div style="max-width:1140px;margin:0 auto;">
+    <div class="section-head reveal">
+      <h2 class="section-title">Frequently asked questions</h2>
+    </div>
+    <div style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:20px;">
+      <div class="step-card reveal">
+        <h3>What if I need to buy after selling in Bucks County?</h3>
+        <p>Buying after selling in a seller's market requires planning, but it is very manageable with the right local agent. The key is knowing your financial position after the sale, having a target area in mind, and moving quickly when the right home comes up. A local agent can help you structure this before you list.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-1">
+        <h3>Is inventory helping sellers in Bucks County right now?</h3>
+        <p>Yes. With only 1.7 months of supply and more homes under contract than active listings, sellers have a significant advantage. Buyers are competing for limited options, which means faster offers, stronger prices, and fewer concessions for sellers.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <h3>Should I get an estimate before deciding whether to sell?</h3>
+        <p>Absolutely. Understanding your home's current value is the most important first step. It tells you what you stand to gain, helps you plan your next move, and gives you a realistic baseline before any conversations about listing or timing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--warm);padding:48px 52px 56px;">
+  <div style="max-width:1140px;margin:0 auto;">
+    <p style="font-size:0.92rem;color:var(--ink-mid);line-height:1.65;max-width:800px;" class="reveal">Market data reflects Bucks County, Pennsylvania, as of April 2026. Data sourced from local MLS records. Contact a licensed Bucks County real estate professional for advice tailored to your specific home and goals.</p>
+    <p style="font-size:0.92rem;color:var(--ink-mid);line-height:1.65;max-width:800px;margin-top:14px;" class="reveal">Estimates are AI-generated using public data and your inputs. They are not appraisals, professional valuations, CMAs, broker price opinions, or official valuations.</p>
+  </div>
+</section>
+
+<footer id="legal">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Bucks County <span>Home Value Now</span></div>
+      <p class="footer-about">AI-powered home value estimates for Bucks County, Pennsylvania homeowners. Free, local, and built on real sales data.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#market">Market Insights</a></li>
+        <li><a href="index.html#why">Why It Works</a></li>
+        <li><a href="bucks-county-home-value-estimator.html">Home Value Estimator</a></li>
+        <li><a href="what-is-my-home-worth-in-bucks-county.html">What’s My Home Worth?</a></li>
+        <li><a href="sell-my-house-bucks-county.html">Sell My House</a></li>
+        <li><a href="bucks-county-housing-market-2026.html">2026 Housing Market</a></li>
+        <li><a href="is-now-a-good-time-to-sell-bucks-county.html">Good Time to Sell?</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="for-agents.html">For Agents</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p style="color:rgba(255,255,255,0.38);margin-bottom:12px;">Estimates are AI-generated using public data and your inputs. They are not appraisals, professional valuations, CMAs, broker price opinions, or official valuations.</p>
+    <p>© 2026 Bucks County Home Value Now · <a href="https://buckscountyhomevaluenow.com">buckscountyhomevaluenow.com</a></p>
+    <p style="margin-top:6px; font-weight:500; color:rgba(255,255,255,0.45);">Bucks County Home Value Now is a lead generation and AI insights platform. It is not a licensed real estate brokerage and does not represent buyers or sellers.</p>
+    <p>Home value estimates provided by this platform are automated AI-generated estimates using public market data and recent comparable sales activity. They are not professional appraisals, broker price opinions, or official valuations of any kind. Estimates may vary from actual market sale prices.</p>
+    <p style="margin-top:6px;">This platform connects users with licensed real estate professionals and does not itself provide brokerage services, represent buyers or sellers, or negotiate real estate transactions.</p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- ═══════════════ VOICEFLOW EMBED ═══════════════ -->
+<style>
+#vf-chat-embed iframe { border: none !important; }
+</style>
+
+<script type="text/javascript">
+(function(d, t) {
+  const PROJECT_ID  = '69f50f88a614bbd04a9aea1a';
+  const VERSION_ID  = '69f50f88a614bbd04a9aea1b';
+  const STORAGE_KEY = 'vf_user_id_bucks_county_current';
+
+  var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+
+  v.onload = function() {
+    let userId = '';
+
+    try {
+      const params = new URLSearchParams(window.location.search);
+
+      if (params.get('resetChat') === '1') {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+
+      userId = localStorage.getItem(STORAGE_KEY);
+
+      if (!userId) {
+        userId = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+        localStorage.setItem(STORAGE_KEY, userId);
+      }
+    } catch (e) {
+      userId = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+    }
+
+    window.voiceflow.chat.load({
+      verify:    { projectID: PROJECT_ID },
+      url:       'https://general-runtime.voiceflow.com',
+      versionID: VERSION_ID,
+      userID:    userId,
+      render: {
+        mode:   'embedded',
+        target: document.getElementById('vf-chat-embed'),
+      },
+      autostart: true,
+      launch: {
+        event: { type: 'launch', payload: {} }
+      },
+      assistant: {
+        title:       'Bucks County Home Advisor',
+        description: 'Get your free AI home value estimate',
+        color:       '#2c4a3e',
+        persistence: 'memory',
+      }
+    });
+  };
+
+  v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
+  v.type = 'text/javascript';
+  s.parentNode.insertBefore(v, s);
+})(document, 'script');
+</script>
+
+</body>
+</html>
