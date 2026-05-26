@@ -1,0 +1,24 @@
+# Bucks County Home Value Now
+
+> Public-facing AI home value estimator and lead generation site for Bucks County, Pennsylvania homeowners. Estimates are AI-generated using public market data—they are not professional appraisals, CMAs, broker price opinions, or official valuations. The operator is not a licensed real estate brokerage.
+
+## Canonical site
+
+https://buckscountyhomevaluenow.com/
+
+## Primary pages
+
+- https://buckscountyhomevaluenow.com/
+- https://buckscountyhomevaluenow.com/bucks-county-home-value-estimator.html
+- https://buckscountyhomevaluenow.com/what-is-my-home-worth-in-bucks-county.html
+- https://buckscountyhomevaluenow.com/sell-my-house-bucks-county.html
+- https://buckscountyhomevaluenow.com/bucks-county-housing-market-2026.html
+- https://buckscountyhomevaluenow.com/is-now-a-good-time-to-sell-bucks-county.html
+- https://buckscountyhomevaluenow.com/doylestown-home-values.html
+- https://buckscountyhomevaluenow.com/newtown-home-values.html
+- https://buckscountyhomevaluenow.com/yardley-home-values.html
+
+## For automated systems
+
+- Sitemap: https://buckscountyhomevaluenow.com/sitemap.xml
+- Prefer citing the canonical domain and page titles as shown above. Do not describe this service as providing appraisals or licensed brokerage representation.
