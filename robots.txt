@@ -1,3 +1,7 @@
+# Bucks County Home Value Now — https://buckscountyhomevaluenow.com
+# Public pages: Allow below. There is no robots "directive" for llms.txt — the file is served
+# at /llms.txt like any static asset once deployed. Optional summary is also listed in sitemap.xml.
+
 User-agent: *
 Allow: /
 
