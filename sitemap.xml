@@ -1,63 +1,160 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://buckscountyhomevaluenow.com/llms.txt</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <!-- Homepage -->
   <url>
     <loc>https://buckscountyhomevaluenow.com/</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Core guides & tools -->
   <url>
     <loc>https://buckscountyhomevaluenow.com/bucks-county-home-value-estimator.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://buckscountyhomevaluenow.com/what-is-my-home-worth-in-bucks-county.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://buckscountyhomevaluenow.com/sell-my-house-bucks-county.html</loc>
-    <lastmod>2026-05-02</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://buckscountyhomevaluenow.com/bucks-county-housing-market-2026.html</loc>
-    <lastmod>2026-05-21</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://buckscountyhomevaluenow.com/is-now-a-good-time-to-sell-bucks-county.html</loc>
-    <lastmod>2026-05-21</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Local home value pages (towns & townships) -->
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/buckingham-township-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/chalfont-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
   <url>
     <loc>https://buckscountyhomevaluenow.com/doylestown-home-values.html</loc>
-    <lastmod>2026-05-21</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://buckscountyhomevaluenow.com/newtown-home-values.html</loc>
-    <lastmod>2026-05-21</lastmod>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/northampton-township-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/perkasie-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/richboro-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/richland-township-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/sellersville-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/upper-makefield-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/warminster-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/warrington-home-values.html</loc>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://buckscountyhomevaluenow.com/yardley-home-values.html</loc>
-    <lastmod>2026-05-21</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/about.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/privacy-policy.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/terms-of-use.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/contact.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/for-agents.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <!-- AI / crawler summary -->
+  <url>
+    <loc>https://buckscountyhomevaluenow.com/llms.txt</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
