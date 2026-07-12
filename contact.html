@@ -129,7 +129,7 @@ footer { background:var(--ink); padding:52px 52px 36px; }
         <li role="none"><a href="yardley-home-values.html" role="menuitem">Yardley</a></li>
       </ul>
     </li>
-    <li><a href="#chatbot" class="nav-btn">Get My Estimate <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></li>
+    <li><a href="index.html#estimate" class="nav-btn">Get My Estimate <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></li>
   </ul>
 </nav>
 <section class="page-hero">
@@ -139,22 +139,12 @@ footer { background:var(--ink); padding:52px 52px 36px; }
 <section class="section" style="padding-top:0;">
   <div class="prose">
       <h2>Homeowners</h2>
-      <p>The fastest way to get a free AI home value estimate is through our <a href="index.html#estimate">homepage estimator</a>. Use the chat below or on the homepage — it takes under two minutes and requires no sign-up.</p>
+      <p>The fastest way to get a free AI home value estimate is through our <a href="index.html#estimate">homepage estimator</a> — it takes under two minutes and requires no sign-up.</p>
       <h2>General inquiries</h2>
       <p>For questions about this website, privacy, or terms of use, email us at <strong>hello@buckscountyhomevaluenow.com</strong> (replace with your live contact email when ready).</p>
       <h2>Licensed professionals</h2>
       <p>Real estate agents interested in receiving seller leads from Bucks County should visit our <a href="for-agents.html">For Agents</a> page.</p>
 </div>
-</section>
-
-<section class="section" style="padding-top:0;">
-  <div class="prose">
-    <div class="chat-wrap" id="chatbot">
-      <div class="chat-head">Bucks County Home Advisor · Free</div>
-      <div id="vf-chat-embed" style="width:100%; height:520px;"></div>
-    </div>
-    <p style="text-align:center;font-size:0.82rem;color:var(--muted);margin-top:14px;">Estimates are AI-generated using public market data and are not professional appraisals or official valuations.</p>
-  </div>
 </section>
 <footer id="legal">
   <div class="footer-top">
@@ -239,50 +229,6 @@ footer { background:var(--ink); padding:52px 52px 36px; }
     });
   });
 </script>
-
-
-<style>
-#vf-chat-embed iframe { border: none !important; }
-</style>
-<script type="text/javascript">
-(function(d, t) {
-  const PROJECT_ID  = '6a50053401906b06a1525ada';
-  const VERSION_ID  = '6a50053401906b06a1525adb';
-  const STORAGE_KEY = 'vf_user_id_bucks_county_current';
-  var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-  v.onload = function() {
-    let userId = '';
-    try {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('resetChat') === '1') localStorage.removeItem(STORAGE_KEY);
-      userId = localStorage.getItem(STORAGE_KEY);
-      if (!userId) {
-        userId = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
-        localStorage.setItem(STORAGE_KEY, userId);
-      }
-    } catch (e) {
-      userId = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
-    }
-    window.voiceflow.chat.load({
-      verify: { projectID: PROJECT_ID },
-      url: 'https://general-runtime.voiceflow.com',
-      versionID: VERSION_ID,
-      userID: userId,
-      render: { mode: 'embedded', target: document.getElementById('vf-chat-embed') },
-      autostart: true,
-      launch: { event: { type: 'launch', payload: {} } },
-      assistant: {
-        title: 'Bucks County Home Advisor',
-        description: 'Get your free AI home value estimate',
-        color: '#2c4a3e',
-        persistence: 'memory',
-      }
-    });
-  };
-  v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
-  v.type = 'text/javascript';
-  s.parentNode.insertBefore(v, s);
-})(document, 'script');
 
 </body>
 </html>
