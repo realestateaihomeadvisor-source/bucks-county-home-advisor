@@ -14,7 +14,7 @@ Revenue model: Sell qualified seller leads to local agents at $200–500/lead.
 ## Tech Stack
 - **Site**: Single file — `index.html` (all HTML, CSS, JS in one file)
 - **Hosting**: GitHub Pages (primary) / Netlify (backup)
-- **Chatbot**: Voiceflow — Project ID: `6a50053401906b06a1525ada`
+- **Chatbot**: Voiceflow — Project ID: `6a5e538a8fc5be81b40d77d5`
 - **CRM**: HubSpot (free plan) — OAuth connected via Voiceflow native integration
 - **DNS**: Namecheap → buckscountyhomevaluenow.com
 
@@ -28,7 +28,7 @@ Always edit this file. Never create separate CSS or JS files.
 
 ## Voiceflow Embed Rules (CRITICAL)
 - Widget source: `https://cdn.voiceflow.com/widget/bundle.mjs`
-- Project ID: `6a50053401906b06a1525ada`
+- Project ID: `6a5e538a8fc5be81b40d77d5`
 - Always include `userID: Date.now().toString()` — this resets the session for every visitor
 - Render mode: `embedded` targeting div `id="vf-chat-embed"`
 - The inner widget has a blue header bar that must be hidden — see BUG_LOG.md
@@ -68,7 +68,7 @@ Always edit this file. Never create separate CSS or JS files.
 - Screenshot confirmation before moving to next step
 - All fixes in one production-ready file per deploy
 - Never contradict previously settled decisions
-- Never confuse Voiceflow projects — only `6a50053401906b06a1525ada` is correct
+- Never confuse Voiceflow projects — only `6a5e538a8fc5be81b40d77d5` is correct
 
 ---
 
