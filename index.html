@@ -474,11 +474,19 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
   ]
 }
 </script>
+<script>
+(function () {
+  if (/\/index\.html$/i.test(location.pathname)) {
+    location.replace(location.pathname.replace(/index\.html$/i, '/') + location.search + location.hash);
+  }
+})();
+</script>
+
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-brand" style="color:inherit;">Bucks County<br><span>Home Value Now</span></a>
+  <a href="/" class="nav-brand" style="color:inherit;">Bucks County<br><span>Home Value Now</span></a>
   <ul class="nav-links">
     <li><a href="#how-it-works">How It Works</a></li>
     <li><a href="#market">Market Data</a></li>
@@ -492,6 +500,7 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
         <li role="none"><a href="newtown-home-values.html" role="menuitem">Newtown</a></li>
         <li role="none"><a href="northampton-township-home-values.html" role="menuitem">Northampton Township</a></li>
         <li role="none"><a href="perkasie-home-values.html" role="menuitem">Perkasie</a></li>
+        <li role="none"><a href="quakertown-home-values.html" role="menuitem">Quakertown</a></li>
         <li role="none"><a href="richboro-home-values.html" role="menuitem">Richboro</a></li>
         <li role="none"><a href="richland-township-home-values.html" role="menuitem">Richland Township</a></li>
         <li role="none"><a href="sellersville-home-values.html" role="menuitem">Sellersville</a></li>
@@ -657,14 +666,16 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
     <div class="footer-col">
       <h4>Navigate</h4>
       <ul>
-        <li><a href="index.html#how-it-works">How It Works</a></li>
-        <li><a href="index.html#market">Market Insights</a></li>
-        <li><a href="index.html#why">Why It Works</a></li>
+        <li><a href="/#how-it-works">How It Works</a></li>
+        <li><a href="/#market">Market Insights</a></li>
+        <li><a href="/#why">Why It Works</a></li>
         <li><a href="bucks-county-home-value-estimator.html">Home Value Estimator</a></li>
         <li><a href="what-is-my-home-worth-in-bucks-county.html">What’s My Home Worth?</a></li>
         <li><a href="sell-my-house-bucks-county.html">Sell My House</a></li>
         <li><a href="bucks-county-housing-market-2026.html">2026 Housing Market</a></li>
         <li><a href="is-now-a-good-time-to-sell-bucks-county.html">Good Time to Sell?</a></li>
+        <li><a href="zestimate-vs-bucks-county-home-value-estimate.html">Zestimate vs Local Estimate</a></li>
+        <li><a href="sell-my-bucks-county-home-fast.html">Sell My Home Fast</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -676,6 +687,7 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
         <li><a href="newtown-home-values.html">Newtown</a></li>
         <li><a href="northampton-township-home-values.html">Northampton Township</a></li>
         <li><a href="perkasie-home-values.html">Perkasie</a></li>
+        <li><a href="quakertown-home-values.html">Quakertown</a></li>
         <li><a href="richboro-home-values.html">Richboro</a></li>
         <li><a href="richland-township-home-values.html">Richland Township</a></li>
         <li><a href="sellersville-home-values.html">Sellersville</a></li>
@@ -746,8 +758,8 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
 
 <script type="text/javascript">
 (function(d, t) {
-  const PROJECT_ID  = '6a50053401906b06a1525ada';
-  const VERSION_ID  = '6a50053401906b06a1525adb';
+  const PROJECT_ID  = '6a5e538a8fc5be81b40d77d5';
+  const VERSION_ID  = '6a5e538a8fc5be81b40d77d6';
   const STORAGE_KEY = 'vf_user_id_bucks_county_current';
 
   var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
