@@ -1,0 +1,144 @@
+{
+  "source": "Zillow Home Value Index ZIP tier benchmarks",
+  "source_urls": [
+    "https://files.zillowstatic.com/research/public_csvs/zhvi/Zip_zhvi_uc_sfrcondo_tier_0.0_0.33_sm_sa_month.csv",
+    "https://files.zillowstatic.com/research/public_csvs/zhvi/Zip_zhvi_uc_sfrcondo_tier_0.67_1.0_sm_sa_month.csv"
+  ],
+  "retrieved_on": "2026-10-11",
+  "definition": "Lower-tier typical home value (5th\u201335th percentile homes) to upper-tier typical home value (65th\u201395th percentile homes); ZIP market context, not a property valuation or confidence interval",
+  "bands": {
+    "18938": {
+      "low": 593044,
+      "high": 1732955,
+      "as_of": "2026-08-31",
+      "city": "New Hope",
+      "county": "Bucks County"
+    },
+    "18940": {
+      "low": 485796,
+      "high": 1274986,
+      "as_of": "2026-08-31",
+      "city": "Newtown",
+      "county": "Bucks County"
+    },
+    "18901": {
+      "low": 466049,
+      "high": 961359,
+      "as_of": "2026-08-31",
+      "city": "Doylestown",
+      "county": "Bucks County"
+    },
+    "19067": {
+      "low": 409715,
+      "high": 896435,
+      "as_of": "2026-08-31",
+      "city": "Yardley",
+      "county": "Bucks County"
+    },
+    "18976": {
+      "low": 434970,
+      "high": 805182,
+      "as_of": "2026-08-31",
+      "city": "Warrington",
+      "county": "Bucks County"
+    },
+    "18914": {
+      "low": 465864,
+      "high": 880955,
+      "as_of": "2026-08-31",
+      "city": "Chalfont",
+      "county": "Bucks County"
+    },
+    "18966": {
+      "low": 412010,
+      "high": 759526,
+      "as_of": "2026-08-31",
+      "city": "Churchville",
+      "county": "Bucks County"
+    },
+    "19047": {
+      "low": 418401,
+      "high": 745814,
+      "as_of": "2026-08-31",
+      "city": "Langhorne",
+      "county": "Bucks County"
+    },
+    "18974": {
+      "low": 399411,
+      "high": 672569,
+      "as_of": "2026-08-31",
+      "city": "Warminster",
+      "county": "Bucks County"
+    },
+    "18951": {
+      "low": 327292,
+      "high": 629506,
+      "as_of": "2026-08-31",
+      "city": "Quakertown",
+      "county": "Bucks County"
+    },
+    "18034": {
+      "low": 392312,
+      "high": 891296,
+      "as_of": "2026-08-31",
+      "city": "Center Valley",
+      "county": "Lehigh County"
+    },
+    "18040": {
+      "low": 344280,
+      "high": 599881,
+      "as_of": "2026-08-31",
+      "city": "Easton",
+      "county": "Northampton County"
+    },
+    "18049": {
+      "low": 293930,
+      "high": 563348,
+      "as_of": "2026-08-31",
+      "city": "Emmaus",
+      "county": "Lehigh County"
+    },
+    "18064": {
+      "low": 325092,
+      "high": 662951,
+      "as_of": "2026-08-31",
+      "city": "Nazareth",
+      "county": "Northampton County"
+    },
+    "18017": {
+      "low": 300509,
+      "high": 551048,
+      "as_of": "2026-08-31",
+      "city": "Bethlehem",
+      "county": "Northampton County"
+    },
+    "18055": {
+      "low": 293539,
+      "high": 645683,
+      "as_of": "2026-08-31",
+      "city": "Hellertown",
+      "county": "Northampton County"
+    },
+    "18013": {
+      "low": 229869,
+      "high": 493634,
+      "as_of": "2026-08-31",
+      "city": "Bangor",
+      "county": "Northampton County"
+    },
+    "18042": {
+      "low": 214493,
+      "high": 430000,
+      "as_of": "2026-08-31",
+      "city": "Easton",
+      "county": "Northampton County"
+    },
+    "18102": {
+      "low": 187067,
+      "high": 283121,
+      "as_of": "2026-08-31",
+      "city": "Allentown",
+      "county": "Lehigh County"
+    }
+  }
+}
