@@ -70,3 +70,12 @@ DO NOT CHANGE autostart TO false. Ever. This breaks the greeting.
 - Drag individual FILES into Netlify, never the folder
 - If rename dialog appears, click "Deploy without renaming"
 - Always test in incognito window after deploying
+
+
+## 2026-10-11 — Chat entry and accessibility (branch verification)
+- Estimate buttons now link directly to #chatbot, with an 88px anchor offset for the fixed navigation.
+- Reveal content is visible without JavaScript or IntersectionObserver support; reduced-motion preferences disable animation.
+- Added visible keyboard focus indicators and labeled the sample report as illustrative.
+- Clarified that connecting with an agent is optional.
+- Voiceflow embed configuration, project/version IDs, autostart, storage, campaign payload, and contact integrations are unchanged.
+- Validation: inline JavaScript and structured data parse successfully. Voiceflow runtime and lead delivery require separate end-to-end checks before promotion.
