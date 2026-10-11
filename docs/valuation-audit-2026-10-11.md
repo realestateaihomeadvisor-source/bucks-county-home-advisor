@@ -57,3 +57,7 @@ An AVM response alone does not substantiate claims that the chatbot independentl
 ## Red End Chat / Cancel buttons
 
 Both controls were visible in the embedded widget during a normal conversation. DOM inspection showed a vfrc-prompt inside an article whose class includes withPrompt-false. Cancel did not remove the controls in this browser. The widget places the prompt with an absolute position and a translateY(136px), but its bounds still fall inside the chat panel here. This points to rendering/clipping behavior; no reliable widget fix has been deployed. Do not hide all prompt controls blindly, because the intended end-chat confirmation must still work.
+
+## Prototype verification
+
+After saving Message 3, ran the complete home-value intake with synthetic 123 Example Lane, Doylestown PA 18901; 3 bedrooms; 2 bathrooms; 2,000–2,500 sqft; Good condition; Just exploring. Logs confirmed the JavaScript ran, the report resolved to $550,000–$650,000 and Doylestown, displayed the corrected source disclaimer, and continued to the two post-report choices. Stopped there: no name/phone/email, HubSpot submission, or notification. Numeric accuracy remains unvalidated. Production text change shares the pinned editable version; this turn's full-flow test was in the prototype.
