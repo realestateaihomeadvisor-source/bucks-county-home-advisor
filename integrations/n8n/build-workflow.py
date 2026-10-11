@@ -10,7 +10,15 @@ const valid = address1.length <= 200 && /^\d+[A-Za-z-]*\s+\S+/.test(address1) &&
 return [{json: valid ? {valid, address1, address2, confirmed_attom_id: text(body.confirmed_attom_id)} : {valid:false, status:'invalid_address', estimate:null, message:'Please provide the street address and city, state, and ZIP code.'}}];'''
 normalize = r'''const request = $('Validate address').first().json;
 const response = $json;
-const unavailable = status => [{json:{status, source:'ATTOM', estimate:null, message:'An automated estimate is unavailable. You can still request a local professional review.'}}];
+const matrix = __ZIP_MATRIX__;
+const fallback = reason => {
+  const zip = String(request.address2 || '').match(/\bPA\s+(\d{5})(?:-\d{4})?$/)?.[1];
+  const band = matrix.bands[zip];
+  if (!band || (Date.now() - Date.parse(band.as_of + 'T00:00:00Z')) / 86400000 > 120) return [{json:{status:reason, source:'ATTOM', estimate:null, message:'We could not retrieve a property estimate, and this ZIP has no backup range. You can continue with a local review.'}}];
+  const usd = v => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(v);
+  return [{json:{status:'zip_fallback',source:matrix.source,provider_status:reason,property_verified:false,estimate:{low:band.low,high:band.high,as_of:band.as_of,kind:'zip_market_context',definition:matrix.definition},voiceflow:{estimate_low:band.low,estimate_high:band.high,estimate_low_display:usd(band.low),estimate_high_display:usd(band.high),estimate_area:'ZIP '+zip,confidence_label:'ZIP market context'},message:'ZIP market context from Zillow home-value tier benchmarks dated '+band.as_of+'. This is a broad area benchmark, not a valuation of your property or a confidence interval. Not an appraisal.'}}];
+};
+const unavailable = fallback;
 if (response.error || response.statusCode !== 200) return unavailable('provider_unavailable');
 let body = response.body;
 if (typeof body === 'string') { try { body = JSON.parse(body); } catch { return unavailable('provider_unavailable'); } }
@@ -28,11 +36,13 @@ const date = property.avm?.eventDate;
 if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return unavailable('undated_valuation');
 const timestamp = Date.parse(date + 'T00:00:00Z');
 const age = (Date.now() - timestamp) / 86400000;
-if (!Number.isFinite(timestamp) || age < -1 || age > 180) return unavailable('valuation_needs_review');
+if (!Number.isFinite(timestamp) || new Date(timestamp).toISOString().slice(0,10) !== date || age < -1 || age > 180) return unavailable('valuation_needs_review');
 const match = {attom_id:id, address:matchedAddress};
 if (request.confirmed_attom_id !== id) return [{json:{status:'confirm_property', source:'ATTOM', property:match, estimate:null, message:'Is this the property you meant? Confirm the full address, including any unit, before continuing.'}}];
 const usd = v => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(v);
 return [{json:{status:'ok', source:'ATTOM', property:match, estimate:{low:values[0], value:values[1], high:values[2], as_of:date, provider_score:typeof amount.scr === 'number' ? amount.scr : null}, voiceflow:{estimate_low:values[0], estimate_high:values[2], estimate_low_display:usd(values[0]), estimate_high_display:usd(values[2]), estimate_area:matchedAddress, confidence_label:'ATTOM automated estimate'}, message:'Automated estimate, not an appraisal. The provider score is not a probability. Condition and recent changes may affect the value.'}}];'''
+
+normalize = normalize.replace('__ZIP_MATRIX__', json.dumps(json.loads((root/'zip-matrix.current.json').read_text())))
 
 def node(name, kind, version, position, parameters, **extra):
     return dict(id=name.lower().replace(' ', '-'), name=name, type='n8n-nodes-base.'+kind, typeVersion=version, position=position, parameters=parameters, **extra)
