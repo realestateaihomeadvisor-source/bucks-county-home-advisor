@@ -1,0 +1,83 @@
+{
+  "name": "TESTING \u2014 Bucks advisor intake \u2014 NO CRM WRITES",
+  "active": false,
+  "nodes": [
+    {
+      "id": "intake-webhook",
+      "name": "TESTING intake request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bucks-advisor-intake-testing-v1",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "intake-code",
+      "name": "TESTING prepare CRM payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "jsCode": "/* Private server-side draft. No network calls or persistent storage. */\nfunction prepareLead(input, options = {}) {\n  input = input && typeof input === 'object' && !Array.isArray(input) ? input : {};\n  const clean = (v, max = 200) => {\n    if (typeof v !== 'string') return '';\n    const s = v.trim();\n    return !s || s.length > max || /[{}]|\\$\\$VAR_/i.test(s) || /^(none|unknown|not_provided|n\\/a|null|undefined)$/i.test(s) ? '' : s;\n  };\n  const oneOf = (v, values) => values.includes(v) ? v : '';\n  const now = options.now || new Date().toISOString();\n  const testing = options.testing !== false; // Caller must deliberately select production.\n  const intent = oneOf(input.intent, ['home_value', 'seller', 'buyer', 'renter']);\n  const serviceByIntent = {\n    home_value: ['cash_offer', 'professional_home_valuation'],\n    seller: ['cash_offer', 'professional_home_valuation'],\n    buyer: ['buyer_help'], renter: ['rental_help']\n  };\n  const service = oneOf(input.requested_service, serviceByIntent[intent] || []);\n  const consent = input.consent || {};\n  const recipient = clean(consent.recipient);\n  const consentAccepted = consent.choice === 'yes' && !consent.withdrawn &&\n    !!recipient && !!clean(consent.text_version) && !!clean(consent.text, 1500) &&\n    consent.service === service && !!service;\n  const contact = input.contact || {};\n  const firstname = clean(contact.firstname, 80);\n  const rawPhone = clean(contact.phone, 40);\n  const digits = rawPhone.replace(/\\D/g, '');\n  const phone = digits.length === 10 ? '+1' + digits : digits.length === 11 && digits.startsWith('1') ? '+' + digits : '';\n  const rawEmail = contact.email_choice === 'yes' ? clean(contact.email, 254).toLowerCase() : '';\n  const email = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(rawEmail) ? rawEmail : '';\n  const address = clean(input.property_address);\n  const event = {\n    event_type: address ? 'valuation_request' : 'advisor_request',\n    received_at: now, testing, intent: intent || 'unknown',\n    // Do not identify the visitor as the owner of the submitted address.\n    role: oneOf(input.role, ['owner', 'buyer', 'renter', 'landlord', 'other']) || 'unspecified',\n    status: clean(input.valuation_status, 60) || 'not_requested'\n  };\n  // Raw-address storage is opt-in to this implementation path, after notices are installed.\n  if (address && options.addressLoggingEnabled === true && clean(input.notice_version)) {\n    event.submitted_address = address;\n    event.notice_version = clean(input.notice_version);\n  }\n  const preferences = input.preferences || {};\n  const context = {};\n  for (const key of ['budget', 'move_timing', 'bedrooms', 'must_haves', 'lease_length', 'saved_property']) {\n    const value = clean(preferences[key], 500);\n    if (value) context[key] = value;\n  }\n  const blocked = reason => ({status: reason, event, context, contactPayload: null, consentReceipt: null, recipient: null, commercial_handoff: false});\n  if (!intent) return blocked('invalid_intent');\n  if (!service) return blocked('information_only');\n  if (!consentAccepted) return blocked('no_contact_consent');\n  if (!firstname || (!phone && !email)) return blocked('contact_incomplete');\n  const p = {firstname, lead_type: intent, hs_lead_status: 'NEW'};\n  if (phone) p.phone = phone;\n  if (email) p.email = email;\n  const source = clean(input.lead_source);\n  if (source) p.lead_source = source;\n  if (intent === 'buyer') {\n    const area = clean(input.buyer_area); if (area) p.buyer_area = area;\n    const preapproved = oneOf(input.buyer_preapproved, ['yes', 'in_progress', 'not_yet']);\n    if (preapproved) p.buyer_preapproved = preapproved;\n    p.buyer_help_interest = 'accepted';\n  } else if (intent === 'renter') {\n    const area = clean(input.renter_area); if (area) p.renter_area = area;\n    const timeline = oneOf(input.renter_timeline, ['short_term', 'long_term']);\n    const beds = oneOf(input.renter_bedrooms, ['studio_1', '2', '3plus']);\n    if (timeline) p.renter_timeline = timeline;\n    if (beds) p.renter_bedrooms = beds;\n    // HubSpot's verified internal enum is capitalized; Voiceflow's is lowercase.\n    p.renter_help_interest = 'Accepted';\n  } else {\n    if (address) p.property_address = address;\n    p.seller_next_step = service;\n    const timeline = oneOf(input.seller_timeline, ['asap', 'within_3_months', 'within_6_months', 'just_exploring']);\n    if (timeline) p.seller_timeline = timeline;\n    // Standard HubSpot city/zip describe a CONTACT'S residence. A searched property\n    // must not silently overwrite these fields. No fabricated estimates/confidence.\n  }\n  return {\n    status: testing ? 'testing_ready' : 'ready_for_crm', event, context,\n    contactPayload: {properties: p},\n    consentReceipt: {choice: 'yes', service, recipient, text_version: consent.text_version,\n      text: consent.text.trim(), received_at: now, testing},\n    recipient, commercial_handoff: false\n  };\n}\n\nconst result = prepareLead($json.body, {testing:true});\nreturn [{json:{status:result.status,testing:true,crm_write_performed:false,notification_sent:false,would_create_contact:!!result.contactPayload,category:result.consentReceipt?.service || result.event.event_type,field_names:result.contactPayload ? Object.keys(result.contactPayload.properties) : []}}];\n"
+      }
+    },
+    {
+      "id": "intake-response",
+      "name": "TESTING response only",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 200
+        }
+      }
+    }
+  ],
+  "connections": {
+    "TESTING intake request": {
+      "main": [
+        [
+          {
+            "node": "TESTING prepare CRM payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TESTING prepare CRM payload": {
+      "main": [
+        [
+          {
+            "node": "TESTING response only",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "none",
+    "saveDataErrorExecution": "none",
+    "saveManualExecutions": false
+  }
+}
