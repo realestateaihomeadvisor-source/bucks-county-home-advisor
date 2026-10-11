@@ -1,0 +1,217 @@
+{
+  "name": "Bucks ATTOM valuation \u2014 staging",
+  "active": false,
+  "nodes": [
+    {
+      "id": "valuation-request",
+      "name": "Valuation request",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "bucks-attom-valuation-v1",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "validate-address",
+      "name": "Validate address",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const body = $json.body || {};\nconst text = v => typeof v === 'string' ? v.trim() : '';\nconst address1 = text(body.address1);\nconst address2 = text(body.address2);\nconst valid = address1.length <= 200 && /^\\d+[A-Za-z-]*\\s+\\S+/.test(address1) && address2.length <= 200 && /\\b[A-Z]{2}\\s+\\d{5}(?:-\\d{4})?$/.test(address2);\nreturn [{json: valid ? {valid, address1, address2, confirmed_attom_id: text(body.confirmed_attom_id)} : {valid:false, status:'invalid_address', estimate:null, message:'Please provide the street address and city, state, and ZIP code.'}}];"
+      }
+    },
+    {
+      "id": "valid-address",
+      "name": "Valid address",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        460,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "valid",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "attom-valuation",
+      "name": "ATTOM valuation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        -100
+      ],
+      "parameters": {
+        "url": "https://api.gateway.attomdata.com/propertyapi/v1.0.0/attomavm/detail",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "address1",
+              "value": "={{ $json.address1 }}"
+            },
+            {
+              "name": "address2",
+              "value": "={{ $json.address2 }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 8000,
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true,
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "id": "normalize-valuation",
+      "name": "Normalize valuation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        -100
+      ],
+      "parameters": {
+        "jsCode": "const request = $('Validate address').first().json;\nconst response = $json;\nconst unavailable = status => [{json:{status, source:'ATTOM', estimate:null, message:'An automated estimate is unavailable. You can still request a local professional review.'}}];\nif (response.error || response.statusCode !== 200) return unavailable('provider_unavailable');\nlet body = response.body;\nif (typeof body === 'string') { try { body = JSON.parse(body); } catch { return unavailable('provider_unavailable'); } }\nif (!body || Number(body.status?.code) !== 0) return unavailable('no_result');\nif (!Array.isArray(body.property) || body.property.length !== 1) return unavailable('no_unique_property');\nconst property = body.property[0];\nconst id = String(property.identifier?.attomId || '');\nconst address = property.address || {};\nconst matchedAddress = [address.line1, address.line2].filter(Boolean).join(', ');\nif (!id || !matchedAddress) return unavailable('no_unique_property');\nconst amount = property.avm?.amount;\nconst values = [amount?.low, amount?.value, amount?.high];\nif (!values.every(v => typeof v === 'number' && Number.isFinite(v) && v > 0) || values[0] > values[1] || values[1] > values[2]) return unavailable('no_valuation');\nconst date = property.avm?.eventDate;\nif (typeof date !== 'string' || !/^\\d{4}-\\d{2}-\\d{2}$/.test(date)) return unavailable('undated_valuation');\nconst timestamp = Date.parse(date + 'T00:00:00Z');\nconst age = (Date.now() - timestamp) / 86400000;\nif (!Number.isFinite(timestamp) || age < -1 || age > 180) return unavailable('valuation_needs_review');\nconst match = {attom_id:id, address:matchedAddress};\nif (request.confirmed_attom_id !== id) return [{json:{status:'confirm_property', source:'ATTOM', property:match, estimate:null, message:'Is this the property you meant? Confirm the full address, including any unit, before continuing.'}}];\nconst usd = v => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(v);\nreturn [{json:{status:'ok', source:'ATTOM', property:match, estimate:{low:values[0], value:values[1], high:values[2], as_of:date, provider_score:typeof amount.scr === 'number' ? amount.scr : null}, voiceflow:{estimate_low:values[0], estimate_high:values[2], estimate_low_display:usd(values[0]), estimate_high_display:usd(values[2]), estimate_area:matchedAddress, confidence_label:'ATTOM automated estimate'}, message:'Automated estimate, not an appraisal. The provider score is not a probability. Condition and recent changes may affect the value.'}}];"
+      }
+    },
+    {
+      "id": "return-result",
+      "name": "Return result",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1180,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 200
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Valuation request": {
+      "main": [
+        [
+          {
+            "node": "Validate address",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate address": {
+      "main": [
+        [
+          {
+            "node": "Valid address",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Valid address": {
+      "main": [
+        [
+          {
+            "node": "ATTOM valuation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ATTOM valuation": {
+      "main": [
+        [
+          {
+            "node": "Normalize valuation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize valuation": {
+      "main": [
+        [
+          {
+            "node": "Return result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "none",
+    "saveDataErrorExecution": "none",
+    "saveManualExecutions": false
+  }
+}
