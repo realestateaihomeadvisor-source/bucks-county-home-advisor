@@ -15,7 +15,7 @@ Status: internal draft. Do not publish or connect this document to live lead del
 | Buyer refuses introduction | Refusal acknowledged; no further contact questions appeared | Public widget; delivery systems were not inspected |
 | Live renter entry | Renting → long-term → Doylestown → bedrooms → offer to send options | Public widget; synthetic preferences, no contact information |
 | Renter chooses Maybe later | Refusal acknowledged; chat ended | Public widget; delivery systems were not inspected |
-| Voiceflow project inventory / duplicate | Blocked | Google sign-in callback returned 502; fresh tab remained signed out |
+| Voiceflow project inventory / duplicate | Access restored; copy created | Real Estate AI account opened 12 projects; duplicated V12 UTM and saved clearly labeled TESTING project |
 | ATTOM inside duplicated Voiceflow project | Not tested | Copy and server-side API wiring still required |
 | Lead delivery to Paul | Not tested | Do this only from isolated testing with outbound agent delivery disabled |
 
@@ -67,4 +67,10 @@ No automatic lead pricing, address resale, agent delivery, or contact enrichment
 
 ## Remaining release gates
 
-Restore Voiceflow access; create the clearly labeled isolated project; configure separate inbound authentication; verify Bucks County provider coverage and account display permissions; implement the private register and opt-in routes; verify delivery to Paul with agent delivery disabled; complete end-to-end tests. Keep the production chatbot unchanged until these checks pass.
+Finish isolating the created TESTING project; configure separate inbound authentication; verify Bucks County provider coverage and account display permissions; implement the private register and opt-in routes; verify delivery to Paul with agent delivery disabled; complete end-to-end tests. Keep the production chatbot unchanged until these checks pass.
+
+## Access recovery and copied project
+
+Manual sign-in left Google on a final consent screen with bullybuster009@gmail.com selected while the user's Cloud Browser viewer reported Connection failed. The secure account switch to realestateaihomeadvisor@gmail.com subsequently opened the workspace. This verifies access restoration; it does not establish the cause of the earlier 502 or viewer disconnect.
+
+Created **TESTING — Bucks Home Advisor — ATTOM + buyer/renter** from **Bucks County Home Advisor V12 - UTM**, version ID `6acc083af3eda240004108d6`, project ID `6acc083af3eda240004108d5`. Verified the editor opens, and downloaded a backup for internal inspection. No Publish action was taken. This copy inherits CRM API steps and a Gmail tool; isolation is still pending. Do not run contact-submission tests until these side effects are disabled in the copy. Production remains unchanged.
