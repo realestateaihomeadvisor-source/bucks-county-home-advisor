@@ -16,7 +16,7 @@ The next milestone is one staging seller conversation that confirms the provider
 | Earlier seller email | Today's Voiceflow TestLead email to Paul exists; synthetic Doylestown address. This is an earlier flow test, not ATTOM end-to-end proof. |
 | Earlier seller CRM claim | Prior chat reported a save, but a current CONTACT search for TestLead returned total 0. Do not assume that old test record still exists. |
 | ATTOM/backend code | Current draft PR #11; 17 valuation and 21 intake tests passed again. Local tests do not establish live provider coverage or CRM delivery. |
-| n8n runtime | Existing instance realestateaiagent.app.n8n.cloud opened; Bucks ATTOM valuation — staging, workflow cG49sE7oQ5Falk6b, visibly Saved and Inactive. Earlier sample/outage responses were not rerun. Webhook currently uses Header Auth account; only that credential exists in its selector. Separate inbound service credential is still pending. |
+| n8n runtime | Existing instance realestateaiagent.app.n8n.cloud opened; Bucks ATTOM valuation — staging, workflow cG49sE7oQ5Falk6b, visibly Saved and Inactive. Earlier sample/outage responses were not rerun. Webhook now uses the separate saved Header Auth credential “Bucks valuation inbound — TESTING” with header X-Bucks-Valuation-Token. The ATTOM provider credential was not changed. |
 | Voiceflow access | RealEstateAI workspace opened successfully this evening. |
 | Voiceflow isolation | Testing project version 6acc083af3eda240004108d6 inspected. All seven visible CRM URLs point to crm-disabled.invalid/testing-only; closing prompt prohibits email/CRM/agent tools. |
 | Saved testing changes | Buyer Renter Post-Phone Details no longer assumes a contact exists or promises follow-up. Renter Agent Offer provides a checklist and no longer promises available listings or delivered options. |
@@ -36,3 +36,27 @@ The next milestone is one staging seller conversation that confirms the provider
 ## Boundaries
 
 No production website publish, main-branch merge, agent test email, new subscription, commercial lead sale, address resale or raw address-register activation in this checkpoint. No pricing or income projection is validated by these technical checks. Revenue depends on contactable, requested service leads and an actual fulfillment arrangement.
+
+## Authorized private connection — 2026-10-11 evening
+
+Paul explicitly approved creation and saving of a separate private token in n8n and the Voiceflow testing project. The token value is not included in this repository, this checkpoint, or screenshots.
+
+- n8n credential: **Bucks valuation inbound — TESTING**, header **X-Bucks-Valuation-Token**; saved and bound to the staging Valuation request webhook. Workflow saved and inactive; no production activation occurred.
+- Voiceflow restricted secret: **BUCKS_VALUATION_TEST_TOKEN**, created in the isolated TESTING project. The API workflow step references the secret by name, not a literal key or a model-generated input.
+- API workflow step: **TESTING — Private ATTOM request**, step ID **6acc24000b66e1bae76a5e9f**, in Start workflow. It is unconnected to visitor intake and uses the provider documentation sample. Request reset to the unconfirmed sample after testing.
+- The first newly created API tool did not show a Secrets selector in its source editor. It was detached from Seller Mini Report; the deterministic API workflow step was used instead. An empty workflow **TESTING — ATTOM runtime smoke**, canvas ID **6acc25c02367a77a17343b79**, was created to prepare a preview check. Copy/paste did not complete; no smoke workflow execution was verified.
+
+| Check | Observed result | Limit |
+| --- | --- | --- |
+| Voiceflow API editor → full n8n workflow, correct token | HTTP 200, status confirm_property, matched ATTOM ID 147435254, estimate null | Editor requested a manual test value for the secret reference; automatic preview resolution remains unverified. |
+| Same provider sample with confirmed_attom_id 147435254 | HTTP 200, status ok, ATTOM value 272953, range 253561–292345, source date 2026-09-24 | Documentation sample in Delaware; does not establish Bucks County coverage. |
+| Deliberately wrong token | HTTP 403 Forbidden | n8n remained waiting for a valid webhook; the test listener was stopped afterward. |
+
+An initial Listen-for-test-event check executed the webhook node only and returned an empty body. It is not counted as a valuation pass. The later tests used Execute workflow and verified the full returned JSON and successful workflow execution.
+
+### Resume here
+
+1. Restore browser-control access: its transport disconnected during smoke-test preparation, and the supported troubleshooting call timed out. Credentials are saved in both services; do not create duplicate credentials or ask Paul to approve the same token again.
+2. Verify the restricted secret resolves in an actual private Voiceflow preview without the API editor's manual test-value override. Finish the dedicated smoke workflow using the existing unconfirmed sample API configuration. Keep it separate from seller intake and CRM.
+3. Replace the static sample body with validated address variables in a separate intake path; add explicit matched-property confirmation and result/error routing. Remove the old calculator path from that staging branch, clear stale estimate variables, and map only successful provider results. Supported ZIP fallback is market context.
+4. Continue the consented CRM and notification specs above. No HubSpot records, agent notifications, website publication, or full seller/buyer/renter delivery test occurred in this credential step.
