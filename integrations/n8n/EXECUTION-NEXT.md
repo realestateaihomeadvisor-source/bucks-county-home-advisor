@@ -82,3 +82,21 @@ The scripts are saved under integrations/voiceflow with 16 passing local checks 
 
 Two concrete interruptions occurred: browser transport briefly disconnected; after recovery Voiceflow displayed “You've reached your maximum credit consumption.” Editing remained possible, but the browser subsequently returned to Voiceflow login during final wiring. No upgrade, credit purchase or production publication occurred. Finish confirmation capture → gate verification, gate success/decline connections, static Code Failure routes, and actual preview tests before connecting this workflow to seller intake. No HubSpot contact or notification was created in this step.
 
+## Usage and spending gates — 2026-10-12
+
+The published BucksCountyHomeValueNow.com widget answered one fresh text message at about 8:35 a.m. America/New_York on October 12. Its initial greeting was automatic; the sent message was “What can you help me with?” and the reply offered buy/sell/rent/home-value choices. That proves one live turn, not the valuation path, CRM delivery, remaining Voiceflow credits or continued service after a hard cap. The Voiceflow billing screen was unavailable after sign-out. Do not infer that an upgrade is necessary or that live capacity is safe from this single check.
+
+Before further credit-consuming Voiceflow previews or any new production rollout, record the workspace plan, remaining credits, consumption history, next reset, auto-upgrade setting and any hard stop behavior from its actual billing/usage UI. If the maximum-consumption warning remains or the remaining allowance is unclear, stop optional previews. Do not buy credits, enable automatic upgrades or change a paid tier without a specific cost and decision from Paul. Keep the live project unchanged while finishing free local code and graph review.
+
+For the staging seller flow, use local tests for parser/formatter/consent logic first, then one targeted preview per corrected path. Record start/end credit readings and the steps exercised; stop if the expected debit is exceeded or the warning returns. Reuse the Delaware provider documentation fixture for integration checks; a separate, limited Bucks address check is needed to establish actual ATTOM coverage before any public property claim. Keep n8n staging inactive and arm only the intended test webhook. Count ATTOM requests and n8n executions separately from Voiceflow credits; neither is assumed free. Add per-session request limits, duplicate suppression and cached provider results with a documented freshness period before opening production traffic.
+
+| Service | Currently verified | Next measurable boundary |
+| --- | --- | --- |
+| Voiceflow | Maximum-credit warning observed; live site answered one turn; billing balance and renewal unknown | Read billing/usage and automatic-upgrade state before more previews or a purchase decision. |
+| n8n and ATTOM | Private TESTING request works; staging workflow saved inactive; no current execution/provider quota read | Inspect plan execution quota and ATTOM usage/allowance; budget calls per isolated test and later per confirmed address. |
+| Higgsfield | Connected balance read: 371.1 credits, Pro workspace, one Genjutsu free generation and five AI Influencer Builder free generations; Viral free generations zero | Daily read-only balance watch alerts below 150 credits or a >50-credit drop; obtain cost estimate before each paid generation and record debit after. |
+| Metricool | Connected brands and publication/analytics tools verified; billing or quota is not exposed by the connector | Review subscription/usage in its own account UI before paid scheduling changes; continue separate brand and duplicate-post checks. |
+| CapCut | No connected billing/usage meter verified in this work | Check current subscription and export/AI credit cost in the app before any paid effect or renewal change. |
+
+No cross-platform spending dashboard is implemented. The Higgsfield watch is a real scheduled read-only balance check; the other rows are explicit gates for work sessions until their meters are accessible. Do not represent the social queue review as a subscription monitor.
+
