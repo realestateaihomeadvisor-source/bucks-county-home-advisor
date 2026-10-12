@@ -71,3 +71,14 @@ The isolated TESTING — ATTOM runtime smoke workflow now contains a copy of the
 An actual Voiceflow preview resolved that phrase to the testing intent, jumped to the private request, and reported `[API tool] succeeded` after 2.93 seconds. The full n8n staging workflow simultaneously reported Workflow executed successfully, with one item through the valuation nodes. No API-editor Send action, manual secret override, replacement credential, CRM write or notification was used. This verifies automatic runtime secret authentication and backend execution. The response was not yet mapped to customer-visible fields in this smoke path; do not count it as a finished seller report or Bucks coverage validation.
 
 Resume with validated seller address variables, property-match confirmation, captured response and deterministic source/date/error display. Then implement consented CRM and Paul-only notification delivery. Existing buyer/closing quality defects remain open. n8n remains Saved and Inactive; no production activation or live website change occurred.
+
+## Conversation staging — 2026-10-12 morning
+
+The isolated workflow now contains address prompting, full-reply capture, address validation/reset code, the variable-bound private request, a response formatter, separate confirmation/final messages, confirmation reply capture and a strict Yes-only gate. Dedicated valuation request/display/confirmation variables were created with cross-session persistence disabled. The API captures its full response to valuation_response; temporary registration mappings were removed.
+
+Before replacing the sample body, an actual preview successfully displayed ATTOM's matched address and withheld the estimate through the response-capture → formatter → message path. This is a limited property-match display pass, not a completed seller conversation.
+
+The scripts are saved under integrations/voiceflow with 16 passing local checks covering full/unit addresses, rejected partial/JSON-breaking inputs, unconfirmed/mismatched properties, explicit/declined/qualified confirmation, stale/future/malformed dates, ZIP context and stale results. See that directory's README for node IDs and exact unfinished connections. The variable-bound preview and final branch wiring remain unverified.
+
+Two concrete interruptions occurred: browser transport briefly disconnected; after recovery Voiceflow displayed “You've reached your maximum credit consumption.” Editing remained possible, but the browser subsequently returned to Voiceflow login during final wiring. No upgrade, credit purchase or production publication occurred. Finish confirmation capture → gate verification, gate success/decline connections, static Code Failure routes, and actual preview tests before connecting this workflow to seller intake. No HubSpot contact or notification was created in this step.
+
