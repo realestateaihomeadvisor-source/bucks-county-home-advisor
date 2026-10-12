@@ -84,6 +84,8 @@ Two concrete interruptions occurred: browser transport briefly disconnected; aft
 
 ## Usage and spending gates — 2026-10-12
 
+**Later account verification, October 12:** Voiceflow re-authentication succeeded. Workspace Pro usage for Oct 11–Nov 11 is $60 total, $1.21 used (2%), $58.79 remaining; auto top-ups are off. Billing shows $60/month credit bundle plus $50/month editor seats, next renewal Nov 11, and a $110 paid Oct 11 invoice. Both seats are occupied by Paul and a collaborator. This supersedes the unknown-balance wording below. No credit purchase, plan/access change, preview run or publication followed. The cause of the earlier maximum-consumption warning was not established. See `ADVISOR-ROADMAP.md` for the architectural and cost decision.
+
 The published BucksCountyHomeValueNow.com widget answered one fresh text message at about 8:35 a.m. America/New_York on October 12. Its initial greeting was automatic; the sent message was “What can you help me with?” and the reply offered buy/sell/rent/home-value choices. That proves one live turn, not the valuation path, CRM delivery, remaining Voiceflow credits or continued service after a hard cap. The Voiceflow billing screen was unavailable after sign-out. Do not infer that an upgrade is necessary or that live capacity is safe from this single check.
 
 Before further credit-consuming Voiceflow previews or any new production rollout, record the workspace plan, remaining credits, consumption history, next reset, auto-upgrade setting and any hard stop behavior from its actual billing/usage UI. If the maximum-consumption warning remains or the remaining allowance is unclear, stop optional previews. Do not buy credits, enable automatic upgrades or change a paid tier without a specific cost and decision from Paul. Keep the live project unchanged while finishing free local code and graph review.
@@ -92,11 +94,10 @@ For the staging seller flow, use local tests for parser/formatter/consent logic 
 
 | Service | Currently verified | Next measurable boundary |
 | --- | --- | --- |
-| Voiceflow | Maximum-credit warning observed; live site answered one turn; billing balance and renewal unknown | Read billing/usage and automatic-upgrade state before more previews or a purchase decision. |
+| Voiceflow | Pro, $60 credits for Oct 11–Nov 11, $1.21 used, $58.79 remaining; auto top-ups off; $110 monthly subscription including editor seats. Earlier warning remains unexplained. | Meter staging preview debit; audit seat need before Nov 11; no credit purchase currently indicated. |
 | n8n and ATTOM | Private TESTING request works; staging workflow saved inactive; no current execution/provider quota read | Inspect plan execution quota and ATTOM usage/allowance; budget calls per isolated test and later per confirmed address. |
 | Higgsfield | Connected balance read: 371.1 credits, Pro workspace, one Genjutsu free generation and five AI Influencer Builder free generations; Viral free generations zero | Daily read-only balance watch alerts below 150 credits or a >50-credit drop; obtain cost estimate before each paid generation and record debit after. |
 | Metricool | Connected brands and publication/analytics tools verified; billing or quota is not exposed by the connector | Review subscription/usage in its own account UI before paid scheduling changes; continue separate brand and duplicate-post checks. |
 | CapCut | No connected billing/usage meter verified in this work | Check current subscription and export/AI credit cost in the app before any paid effect or renewal change. |
 
 No cross-platform spending dashboard is implemented. The Higgsfield watch is a real scheduled read-only balance check; the other rows are explicit gates for work sessions until their meters are accessible. Do not represent the social queue review as a subscription monitor.
-
