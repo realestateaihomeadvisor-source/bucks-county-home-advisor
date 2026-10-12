@@ -60,3 +60,14 @@ An initial Listen-for-test-event check executed the webhook node only and return
 2. Verify the restricted secret resolves in an actual private Voiceflow preview without the API editor's manual test-value override. Finish the dedicated smoke workflow using the existing unconfirmed sample API configuration. Keep it separate from seller intake and CRM.
 3. Replace the static sample body with validated address variables in a separate intake path; add explicit matched-property confirmation and result/error routing. Remove the old calculator path from that staging branch, clear stale estimate variables, and map only successful provider results. Supported ZIP fallback is market context.
 4. Continue the consented CRM and notification specs above. No HubSpot records, agent notifications, website publication, or full seller/buyer/renter delivery test occurred in this credential step.
+
+
+## Runtime secret verified — 2026-10-12
+
+Browser control recovered. Voiceflow and n8n required fresh secure sign-in; both were verified signed in. Their unfinished work tabs were marked for continuation. This preserves tabs for later work but does not guarantee permanent authentication or prevent cloud environment restarts.
+
+The isolated TESTING — ATTOM runtime smoke workflow now contains a copy of the private request step (ID 6accc4f59bf0946f0b809635), connected to its own testing-only intent trigger. The intent TESTING ATTOM runtime has the explicit sample phrase `run private attom smoke test`. No production project was published.
+
+An actual Voiceflow preview resolved that phrase to the testing intent, jumped to the private request, and reported `[API tool] succeeded` after 2.93 seconds. The full n8n staging workflow simultaneously reported Workflow executed successfully, with one item through the valuation nodes. No API-editor Send action, manual secret override, replacement credential, CRM write or notification was used. This verifies automatic runtime secret authentication and backend execution. The response was not yet mapped to customer-visible fields in this smoke path; do not count it as a finished seller report or Bucks coverage validation.
+
+Resume with validated seller address variables, property-match confirmation, captured response and deterministic source/date/error display. Then implement consented CRM and Paul-only notification delivery. Existing buyer/closing quality defects remain open. n8n remains Saved and Inactive; no production activation or live website change occurred.
