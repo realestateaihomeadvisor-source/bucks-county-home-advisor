@@ -101,3 +101,11 @@ For the staging seller flow, use local tests for parser/formatter/consent logic 
 | CapCut | No connected billing/usage meter verified in this work | Check current subscription and export/AI credit cost in the app before any paid effect or renewal change. |
 
 No cross-platform spending dashboard is implemented. The Higgsfield watch is a real scheduled read-only balance check; the other rows are explicit gates for work sessions until their meters are accessible. Do not represent the social queue review as a subscription monitor.
+
+## Isolated Voiceflow preview checkpoint — 2026-10-12
+
+The existing TESTING project was resumed; no replacement project or live site change was made. Voiceflow's new Oct 11–Nov 11 credit period showed $58.79 remaining before these previews. The older maximum-consumption warning's exact cause remains unverified; the new period balance does not undo that earlier event. Preview debits after this session have not yet been read.
+
+In the isolated workflow, capture → gate, gate Default → private ATTOM API, gate declined → final display and static failure routes were connected. The authenticated n8n TEST webhook returned the matched ATTOM documentation address repeatedly. The first visitor-visible response withheld any estimate. The preview then logged `End` about ten seconds after the confirmation message, so a full `Yes` → dated estimate has **not** passed. Shortening the prompt and saving a 90-second No reply reminder did not fix this. A direct preview launched at the confirmation message did accept `No` and execute the gate, but its eventual text was not a clean decline proof because the backend listener was not armed. See `integrations/voiceflow/README.md` for the exact block IDs and continuation.
+
+The immediate next task is to repair and prove the formatter custom-path-to-capture transition, then test `Yes`, `No`, wrong address and provider failure as visitor turns. Keep n8n staging inactive, arm the one-shot test webhook for each ATTOM request, and do not connect the flow to live seller intake or CRM until the actual visitor conversation passes. Local valuation code checks remain 16/16; they do not resolve the preview bug.

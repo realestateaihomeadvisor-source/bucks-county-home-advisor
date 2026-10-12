@@ -6,7 +6,7 @@ if (!r || typeof r !== "object") r = {};
 valuation_response = r;
 if (r.status === "confirm_property" && r.property && typeof r.property.address === "string" && /^\d+$/.test(String(r.property.attom_id || ""))) {
   confirmed_attom_id = "";
-  valuation_display = "Is this the property you meant?\n" + r.property.address + "\nReply Yes only if the full address, including any unit, is correct. Reply No to stop. No estimate is shown until you confirm.";
+  valuation_display = "Confirm this exact property: " + r.property.address + ". Reply Yes or No. No estimate until you confirm.";
   return ["confirm"];
 }
 var e = r.estimate || {};
