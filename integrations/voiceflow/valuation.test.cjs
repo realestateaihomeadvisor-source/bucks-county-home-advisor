@@ -35,6 +35,10 @@ test('explicit yes records only matched ID and clears response for retry',()=>{
 for (const reply of ['No','maybe','yes but wrong unit']) test(`confirmation ${reply} stops without estimate`,()=>{
   const {state:s,route}=run('confirmation',{last_utterance:reply,valuation_response:match,valuation_address1:'468 SEQUOIA DR',valuation_address2:'SMYRNA, DE 19977'}); assert.equal(route,'declined'); assert.equal(s.confirmed_attom_id,''); assert.equal(s.estimate_low,0);
 });
+test('no-reply path with stale address text cannot confirm the match',()=>{
+  const {state:s,route}=run('confirmation',{last_utterance:'468 SEQUOIA DR, SMYRNA, DE 19977',valuation_response:match,valuation_address1:'468 SEQUOIA DR',valuation_address2:'SMYRNA, DE 19977'});
+  assert.equal(route,'declined'); assert.equal(s.confirmed_attom_id,''); assert.equal(s.estimate_low,0); assert.match(s.valuation_display,/no property estimate was released/);
+});
 test('matching confirmed ID displays sourced dated range',()=>{
   const {state:s}=run('formatter',{valuation_response:estimate,confirmed_attom_id:'147435254'}); assert.equal(s.estimate_low,253561); assert.match(s.valuation_display,/\$253,561/); assert.match(s.valuation_display,/Source: ATTOM/); assert.ok(s.valuation_display.includes(today)); assert.match(s.valuation_display,/no lead has been created/);
 });
