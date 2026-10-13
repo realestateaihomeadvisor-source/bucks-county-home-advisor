@@ -27,7 +27,7 @@ test('JSON-breaking address input is rejected',()=>{
   assert.equal(run('parser',{last_utterance:'123 "Main" St, Quakertown, PA 18951'}).route,'invalid');
 });
 test('unconfirmed match exposes address and withholds range',()=>{
-  const {state:s,route}=run('formatter',{valuation_response:match}); assert.equal(route,'confirm'); assert.equal(s.estimate_low,0); assert.equal(s.estimate_high_display,''); assert.match(s.valuation_display,/468 SEQUOIA/); assert.doesNotMatch(s.valuation_display,/253,561/);
+  const {state:s,route}=run('formatter',{valuation_response:match,last_utterance:'Yes'}); assert.equal(route,'confirm'); assert.equal(s.last_utterance,''); assert.equal(s.estimate_low,0); assert.equal(s.estimate_high_display,''); assert.match(s.valuation_display,/468 SEQUOIA/); assert.doesNotMatch(s.valuation_display,/253,561/);
 });
 test('explicit yes records only matched ID and clears response for retry',()=>{
   const {state:s,route}=run('confirmation',{last_utterance:'Yes',valuation_response:match,valuation_address1:'468 SEQUOIA DR',valuation_address2:'SMYRNA, DE 19977'}); assert.equal(route,undefined); assert.equal(s.confirmed_attom_id,'147435254'); assert.equal(Object.keys(s.valuation_response).length,0); assert.equal(s.estimate_low,0);
