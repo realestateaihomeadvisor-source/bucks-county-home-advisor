@@ -7,7 +7,7 @@ valuation_response = r;
 if (r.status === "confirm_property" && r.property && typeof r.property.address === "string" && /^\d+$/.test(String(r.property.attom_id || ""))) {
   confirmed_attom_id = "";
   valuation_display = "Confirm this exact property: " + r.property.address + ". Reply Yes or No. No estimate until you confirm.";
-  return ["confirm"];
+  return "confirm";
 }
 var e = r.estimate || {};
 var age = (Date.now() - Date.parse(String(e.as_of) + "T00:00:00Z")) / 86400000;
