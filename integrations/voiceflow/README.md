@@ -12,7 +12,7 @@ Testing intent → address message → entire-reply capture (`last_utterance`) �
 
 - Parser Default → private API; parser `invalid` → final display.
 - API Success → formatter; API Failure → final display.
-- Formatter Default → final display; formatter `confirm` → confirmation message → entire-reply capture → confirmation code. The capture's 90-second No reply path follows its reminder to the gate, which safely declines without a matching Yes.
+- Formatter Default → final display; formatter `confirm` → confirmation message → entire-reply capture → confirmation code. The capture's 90-second No reply path follows its reminder to the static failure message in New Block 10; ordinary captured replies continue to the confirmation gate.
 - Confirmation Default → the same private API; confirmation `declined` → final display.
 - Every Code Failure must lead to a static failure message that does not interpolate previous results.
 
@@ -55,7 +55,7 @@ After secure n8n sign-in, the inactive `Bucks ATTOM valuation — staging` workf
 | Conversation | Observed result |
 | --- | --- |
 | Yes, documentation sample `468 SEQUOIA DR, SMYRNA, DE 19977` | First webhook call returned the exact matched property and held the estimate. The preview stayed open for `Yes`; a separately armed second call returned `$253,561 – $292,345`, source ATTOM, estimate date `2026-09-24`, with the not-an-appraisal and no-lead/no-agent language. The n8n editor reported successful execution for both calls. This is a complete provider-backed valuation conversation for the documentation sample, not proof of coverage or accuracy for other properties. |
-| No, same sample | The full preview accepted `No` at the confirmation and displayed `Stopped — no property estimate was released, no lead created and no notification sent.` No second API call or range appeared. |
+| No, same sample | The full preview accepted `No` at the confirmation and displayed `Stopped — no property estimate was released, no lead created and no agent contacted. Start a new test if you want to correct the address.` No second API call or range appeared. |
 | No reply, same sample | After the configured inactivity period, the visitor saw `Please reply Yes or No to confirm the exact property. No estimate has been shown.` A second inactivity timeout logged `End` and closed the chat without an estimate or success message. The final exit is silent; the saved Follow path after reprompts setting was checked, but the observed runtime did not display the gate's decline text. Treat this as a remaining timeout UX issue, not a demonstrated final-message pass. |
 | Unsuccessful lookup, synthetic `99999 TEST LANE, DOYLESTOWN, PA 18901` | n8n returned a ZIP context fallback. The visitor saw `A property estimate is unavailable` and a dated Zillow tier benchmark description explicitly saying it is a broad area benchmark, not the property's valuation or a confidence interval. No numeric property range or submitted-request claim appeared. |
 
@@ -63,8 +63,23 @@ The exact visitor output for Yes and no-match is in the Voiceflow preview logs; 
 
 Before CRM testing, give the final timeout an explicit safe closure, verify it in a fresh complete preview, and confirm the intended staging-to-CRM handoff design separately. There is no demonstrated HubSpot contact creation or notification delivery. Keep the staging workflow inactive and PR #11 draft; do not deploy or merge.
 
-### Minimal timeout repair queued for the TESTING canvas
+### Minimal timeout repair plan (completed October 13)
 
 Use the existing static failure message in **New Block 10** for the final no-reply exit. Inspect the output connector on confirmation capture **New Block 8** (`6accce900c14e469f8958625`) after its one reminder and `Follow path after reprompts` setting. Remove any dangling or ambiguous final No reply edge and connect that specific output directly to New Block 10, whose text explicitly says the property check could not finish and that no lead or notification was sent. Keep ordinary captured replies connected to the Yes/No gate **New Block 9**. This reuses an existing deterministic message, adds no API request or AI generation, and avoids relying on stale `last_utterance` for a timeout. Do not change the 90-second inactivity interval without a separate UX reason.
 
 Retest from Start with an armed first webhook call and the documentation sample, then leave the confirmation unanswered through both timer periods. Require the reminder, then the static final message and `End`, with zero estimate fields and no second webhook request. Also rerun one `Yes` and one `No` preview to ensure the new edge has not diverted captured replies. If the capture still logs `End` before New Block 10, inspect whether Voiceflow's No reply path only fires after the reprompt setting is exhausted or rebuild that one Capture step; do not mark the timeout fixed from canvas lines alone.
+
+## October 13 confirmed timeout repair and regression
+
+The final **No reply** output on confirmation Capture **New Block 8** was connected in the isolated TESTING canvas directly to the existing static failure message **New Block 10**. Its ordinary entire-reply output remains connected to gate **New Block 9**. The 90-second inactivity setting, one Yes/No reminder, and Follow path after reprompts setting were unchanged. A canvas reload preserved the edge.
+
+Fresh complete previews from Start, with each first provider call manually armed on the inactive n8n staging workflow, produced:
+
+| Conversation | Observed visitor outcome |
+| --- | --- |
+| Yes, ATTOM documentation sample `468 SEQUOIA DR, SMYRNA, DE 19977` | Exact matched property was offered without a range; `Yes` reached the gate and a separately armed second staging call. The response showed ATTOM `$253,561 – $292,345`, dated `2026-09-24`, with the appraisal caveat and explicit no-lead/no-agent testing language. |
+| No, same sample | `No` reached the gate and ended with `Stopped — no property estimate was released, no lead created and no agent contacted. Start a new test if you want to correct the address.` No range or second call appeared. |
+| No reply, same sample | After the first 90-second interval the visitor saw `Please reply Yes or No to confirm the exact property. No estimate has been shown.` After the final inactivity interval the visitor saw `We could not finish this property check right now. Please try again later. This TESTING flow did not submit a lead or notify anyone.` The chat then ended. No range or second provider call appeared. This closes the previously silent exit. |
+| Unsuccessful lookup, synthetic `99999 TEST LANE, DOYLESTOWN, PA 18901` | `A property estimate is unavailable` followed by dated ZIP market context labeled as a broad area benchmark, not a property valuation or confidence interval; no numeric range or submitted-request claim. |
+
+`node integrations/voiceflow/valuation.test.cjs` passed all 17 local script checks again. These preview results validate the isolated conversation for the tested samples; they do not establish ATTOM coverage or accuracy across properties. n8n staging remained inactive. Production site/chatbot and existing lead routing were not published or changed. No HubSpot contact or notification delivery was tested. PR #11 remains a draft and must not be merged or deployed as a completed seller workflow. The next gate is a separately designed and verified staging-to-CRM handoff, including contact creation, duplicate handling, notification confirmation, and truthful failure messaging before any production release.
