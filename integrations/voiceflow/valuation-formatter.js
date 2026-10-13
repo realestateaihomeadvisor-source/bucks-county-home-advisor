@@ -5,7 +5,7 @@ if (typeof r === "string") { try { r = JSON.parse(r); } catch (e) { r = {}; } }
 if (!r || typeof r !== "object") r = {};
 valuation_response = r;
 if (r.status === "confirm_property" && r.property && typeof r.property.address === "string" && /^\d+$/.test(String(r.property.attom_id || ""))) {
-  confirmed_attom_id = "";
+  confirmed_attom_id = ""; last_utterance = "";
   valuation_display = "Confirm this exact property: " + r.property.address + ". Reply Yes or No. No estimate until you confirm.";
   return "confirm";
 }
