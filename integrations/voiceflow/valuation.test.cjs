@@ -6,7 +6,7 @@ const scripts = Object.fromEntries(['parser', 'formatter', 'confirmation'].map(n
 function run(name, extra = {}) {
   const state = {last_utterance:'', valuation_response:{}, confirmed_attom_id:'', valuation_address1:'', valuation_address2:'', valuation_display:'OLD REPORT', estimate_low:999999, estimate_high:1999999, estimate_low_display:'OLD LOW', estimate_high_display:'OLD HIGH', estimate_area:'OLD AREA', confidence_label:'OLD CONFIDENCE', property_address:'OLD ADDRESS', city:'', state:'', property_zip:'', ...extra};
   const route = vm.runInNewContext(`(function(){${scripts[name]}\n})()`, state);
-  return {state, route:route?.[0]};
+  return {state, route};
 }
 const match = {status:'confirm_property', source:'ATTOM', property:{attom_id:'147435254', address:'468 SEQUOIA DR, SMYRNA, DE 19977'}, estimate:null};
 const today = new Date().toISOString().slice(0,10);
