@@ -4,7 +4,7 @@ Testing project version: `6acc083af3eda240004108d6`. Isolated workflow: `6acc25c
 
 The three JavaScript files mirror the code staged in this private testing workflow. They use project variables, not external requests or credentials. Register `valuation_address1`, `valuation_address2`, `confirmed_attom_id`, `valuation_display`, and `valuation_response` with cross-session persistence disabled. Existing property and estimate variables are reused; address parsing preserves the original full address in `property_address`.
 
-Run the local checks with `node integrations/voiceflow/valuation.test.cjs`. Sixteen checks passed again on October 13 after correcting the custom Code-step return values to route-name strings. These execute the scripts independently; they do not establish browser wiring, provider coverage or live delivery.
+Run the local checks with `node integrations/voiceflow/valuation.test.cjs`. Seventeen checks passed on October 13 after correcting the custom Code-step return values to route-name strings. These execute the scripts independently; they do not establish browser wiring, provider coverage or live delivery.
 
 ## Intended graph
 
@@ -12,7 +12,7 @@ Testing intent → address message → entire-reply capture (`last_utterance`) �
 
 - Parser Default → private API; parser `invalid` → final display.
 - API Success → formatter; API Failure → final display.
-- Formatter Default → final display; formatter `confirm` → confirmation message → entire-reply capture → confirmation code. The capture's No reply path follows its reminder to the gate, which safely declines without a matching Yes.
+- Formatter Default → final display; formatter `confirm` → confirmation message → entire-reply capture → confirmation code. The capture's 90-second No reply path follows its reminder to the gate, which safely declines without a matching Yes.
 - Confirmation Default → the same private API; confirmation `declined` → final display.
 - Every Code Failure must lead to a static failure message that does not interpolate previous results.
 
@@ -46,4 +46,4 @@ Next isolate the formatter custom `confirm` path → confirmation message → ca
 
 A full preview with the test webhook unarmed reached API Failure and displayed the static failure message; it showed no valuation or lead/notification claim. An incomplete `Main Street` address had incorrectly advanced to the API while the parser returned `["invalid"]`. With the scalar `"invalid"` return, a repeat from Start went to the address guidance without an API call. The formatter and gate have the same scalar-route correction, and all three saved edits were verified after a TESTING canvas reload.
 
-Confirmation capture is set to 90 seconds, a reminder to answer Yes or No without showing an estimate, and Follow path after reprompts enabled; its No reply output is visibly connected to the gate. This timeout route has not yet been exercised in a complete runtime conversation. The n8n browser session remains at sign-in with a valid-email form error, so no staging test listener was armed on October 13. Full provider-backed Yes, No, no-reply and unsuccessful lookup conversations remain required. Do not infer ATTOM valuation, HubSpot contact, or notification delivery from the 16 script checks. Leave the test workflow inactive and the PR draft.
+Confirmation capture is set to 90 seconds, a reminder to answer Yes or No without showing an estimate, and Follow path after reprompts enabled; its No reply output is visibly connected to the gate. The script check with a stale address as `last_utterance` declines and clears the estimate, but a live timeout has not been demonstrated. This timeout route has not yet been exercised in a complete runtime conversation. The n8n browser session remains at sign-in with a valid-email form error, so no staging test listener was armed on October 13. Full provider-backed Yes, No, no-reply and unsuccessful lookup conversations remain required. Do not infer ATTOM valuation, HubSpot contact, or notification delivery from the 17 script checks. Leave the test workflow inactive and the PR draft.
