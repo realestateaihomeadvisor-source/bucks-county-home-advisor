@@ -2,6 +2,8 @@
 
 Status: code contract only. `crm-stage-gate.js` is not installed in n8n and does not call HubSpot, send a notification, or persist a receipt. The existing no-write intake workflow remains inactive and unchanged. Do not publish the Voiceflow TESTING project or merge PR #11 on the strength of these checks.
 
+An isolated n8n Data Table named `TESTING Bucks consent receipts — synthetic only` was created at table ID `mxtqKeAdCttZPP5B`. Its string columns are `receipt_id`, `session_id`, `status`, `service`, `recipient`, `text_version`, `notice_text`, `accepted_at`, `withdrawn`, `idempotency_key`, `crm_contact_id`, and `crm_status`, in addition to n8n's built-in ID/timestamps. The single schema-check row is `SCHEMA_ONLY_001` with `status=fixture_unverified`; it records no visitor choice or contact details and can never satisfy the gate's `accepted` requirement. The table is not connected to a workflow. Data Table upsert alone is not evidence of atomic reservation under concurrent requests; this still needs a duplicate/retry design and runtime test.
+
 ## Verified portal facts, October 14
 
 - HubSpot CONTACT read/write is available to the connected user. The `firstname`, `email`, `phone`, `property_address`, `lead_type`, `seller_next_step`, `hs_lead_status`, `lead_source`, and `hubspot_owner_id` properties exist.
