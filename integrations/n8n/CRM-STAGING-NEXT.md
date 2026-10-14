@@ -6,7 +6,7 @@ Status: code contract only. `crm-stage-gate.js` is not installed in n8n and does
 
 - HubSpot CONTACT read/write is available to the connected user. The `firstname`, `email`, `phone`, `property_address`, `lead_type`, `seller_next_step`, `hs_lead_status`, `lead_source`, and `hubspot_owner_id` properties exist.
 - `seller_next_step=professional_home_valuation`, `lead_type=seller`, and `hs_lead_status=NEW` are valid internal enum values. Paul Egan's owner ID is `84884614`.
-- These property checks do not show whether a new contact would enter a HubSpot workflow, send an email, or notify another person. Treat automation isolation as unverified until inspected in the portal.
+- The HubSpot Automation Overview showed one contact automation, `BCHVN seller alert — inactive, needs source filter`, with a **Publish** control (unpublished). Its visible trigger is a contact property change where `Lead Source` equals `Voiceflow`; its action would email Paul. The staging contract uses `Lead Source = TESTING — Bucks advisor staging`. This inspects the visible HubSpot workflow only; other external integrations or account rules have not been ruled out. Keep `automationsIsolated` false in an installed workflow until that preflight is signed off.
 
 ## Next installation sequence
 
