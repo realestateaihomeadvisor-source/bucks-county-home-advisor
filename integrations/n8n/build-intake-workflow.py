@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 root = Path(__file__).parent
 code = (root / 'lead-intake.js').read_text().split("if (typeof module")[0]
-code += "\nconst result = prepareLead($json.body, {testing:true});\nreturn [{json:{status:result.status,testing:true,crm_write_performed:false,notification_sent:false,would_create_contact:!!result.contactPayload,category:result.consentReceipt?.service || result.event.event_type,field_names:result.contactPayload ? Object.keys(result.contactPayload.properties) : []}}];\n"
+code += "\nconst result = prepareLead($json.body, {testing:true, consentConfig:{recipient:'Paul at Bucks County Home Advisor',text_version:'bucks-testing-seller-v1',text:'TESTING ONLY: May we share your name and chosen contact method with Paul at Bucks County Home Advisor about the service you selected? This test will not create a contact or notify Paul.'}});\nreturn [{json:{status:result.status,testing:true,crm_write_performed:false,notification_sent:false,would_create_contact:!!result.contactPayload,category:result.consentReceipt?.service || result.event.event_type,field_names:result.contactPayload ? Object.keys(result.contactPayload.properties) : []}}];\n"
 nodes = [
     {'id':'intake-webhook','name':'TESTING intake request','type':'n8n-nodes-base.webhook','typeVersion':2,'position':[0,0],
      'parameters':{'httpMethod':'POST','path':'bucks-advisor-intake-testing-v1','authentication':'headerAuth','responseMode':'responseNode','options':{}}},
