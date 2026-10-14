@@ -2,7 +2,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
-const scripts = Object.fromEntries(['parser', 'formatter', 'confirmation'].map(name => [name, fs.readFileSync(path.join(__dirname, `valuation-${name}.js`), 'utf8')]));
+const scripts = Object.fromEntries(['parser', 'formatter', 'confirmation', 'offer-gate'].map(name => [name, fs.readFileSync(path.join(__dirname, `valuation-${name}.js`), 'utf8')]));
 function run(name, extra = {}) {
   const state = {last_utterance:'', valuation_response:{}, confirmed_attom_id:'', valuation_address1:'', valuation_address2:'', valuation_display:'OLD REPORT', estimate_low:999999, estimate_high:1999999, estimate_low_display:'OLD LOW', estimate_high_display:'OLD HIGH', estimate_area:'OLD AREA', confidence_label:'OLD CONFIDENCE', property_address:'OLD ADDRESS', city:'', state:'', property_zip:'', ...extra};
   const route = vm.runInNewContext(`(function(){${scripts[name]}\n})()`, state);
@@ -54,4 +54,15 @@ test('ZIP context never populates property estimate fields',()=>{
 test('malformed response cannot show a stale report',()=>{
   const {state:s}=run('formatter',{valuation_response:'not JSON'}); assert.equal(s.estimate_low,0); assert.doesNotMatch(s.valuation_display,/OLD/);
 });
+test('verified ATTOM display alone reaches the optional test offer',()=>{
+  const {state:s,route}=run('offer-gate',{valuation_response:estimate,confirmed_attom_id:'147435254',estimate_low:253561,estimate_high:292345,last_utterance:'Yes'});
+  assert.equal(route,'offer'); assert.equal(s.last_utterance,'');
+});
+for (const response of [{...estimate,status:'zip_fallback'}, {...estimate,source:'other'}, {...estimate,property:{attom_id:'999'}}, {...estimate,estimate:{...estimate.estimate,low:0}}]) test('nonvalidated estimate cannot reach optional offer',()=>{
+  assert.equal(run('offer-gate',{valuation_response:response,confirmed_attom_id:'147435254',estimate_low:253561,estimate_high:292345}).route,undefined);
+});
+test('stale display fields cannot reach optional offer',()=>{
+  assert.equal(run('offer-gate',{valuation_response:estimate,confirmed_attom_id:'147435254',estimate_low:999,estimate_high:292345}).route,undefined);
+});
 console.log(`${count} valuation conversation checks passed`);
+
