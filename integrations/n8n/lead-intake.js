@@ -16,11 +16,17 @@ function prepareLead(input, options = {}) {
     buyer: ['buyer_help'], renter: ['rental_help']
   };
   const service = oneOf(input.requested_service, serviceByIntent[intent] || []);
-  const consent = input.consent || {};
-  const recipient = clean(consent.recipient);
+  const consent = input.consent && typeof input.consent === 'object' ? input.consent : {};
+  // A request cannot choose its own notice or recipient. The caller must supply
+  // the notice configured for this staging flow from a trusted server context.
+  const configured = options.consentConfig || {};
+  const recipient = clean(configured.recipient);
+  const noticeVersion = clean(configured.text_version);
+  const noticeText = clean(configured.text, 1500);
   const consentAccepted = consent.choice === 'yes' && !consent.withdrawn &&
-    !!recipient && !!clean(consent.text_version) && !!clean(consent.text, 1500) &&
-    consent.service === service && !!service;
+    !!recipient && !!noticeVersion && !!noticeText &&
+    consent.recipient === recipient && consent.text_version === noticeVersion &&
+    consent.text === noticeText && consent.service === service && !!service;
   const contact = input.contact || {};
   const firstname = clean(contact.firstname, 80);
   const rawPhone = clean(contact.phone, 40);
@@ -81,8 +87,8 @@ function prepareLead(input, options = {}) {
   return {
     status: testing ? 'testing_ready' : 'ready_for_crm', event, context,
     contactPayload: {properties: p},
-    consentReceipt: {choice: 'yes', service, recipient, text_version: consent.text_version,
-      text: consent.text.trim(), received_at: now, testing},
+    consentReceipt: {choice: 'yes', service, recipient, text_version: noticeVersion,
+      text: noticeText, received_at: now, testing},
     recipient, commercial_handoff: false
   };
 }
