@@ -101,3 +101,16 @@ New Block 13's No reply branch is enabled with a 90-second inactivity interval, 
 A focused Voiceflow preview started at New Block 12 and was left unanswered. It logged the first `No reply timeout` at 20:25:12, displayed the reminder, logged a second `No reply timeout` at 20:26:50, displayed New Block 17's exact ending, then logged `End` at 20:27:00. No CRM or notification claim appeared. This passes the new post-report inactivity path in a focused preview; it is not a fresh complete provider-backed conversation. The 23 valuation checks and 21 intake checks passed locally again, without network or CRM writes.
 
 Still required before CRM testing: rerun complete confirmation No and unsuccessful-lookup conversations after the success-only offer gate, then implement and verify explicit seller consent/contact capture and a gated synthetic HubSpot write with contact ID, duplicate/failure handling, and Paul-only delivery. Keep staging inactive, production untouched, and PR #11 draft.
+
+## October 14 full-path regression after the offer gate
+
+After secure Voiceflow sign-in, two new previews launched from the isolated `TESTING ATTOM runtime` intent. The inactive n8n ATTOM test workflow was armed only for each initial request and returned to idle after each call.
+
+| Conversation | Observed visitor outcome |
+| --- | --- |
+| No, ATTOM documentation sample `468 SEQUOIA DR, SMYRNA, DE 19977` | The first call matched that exact property and the confirmation asked for Yes or No without a range. `No` reached the gate and displayed `Stopped — no property estimate was released, no lead created and no agent contacted. Start a new test if you want to correct the address.` The chat ended. No second request, price or follow-up offer appeared. |
+| Unsuccessful lookup, synthetic `99999 TEST LANE, DOYLESTOWN, PA 18901` | The chat displayed `A property estimate is unavailable. ZIP market context from Zillow home-value tier benchmarks dated 2026-08-31. This is a broad area benchmark, not a valuation of your property or a confidence interval. Not an appraisal. Testing only — no request has been submitted.` It then ended with no numeric property range or follow-up offer. |
+
+Reran `node integrations/voiceflow/valuation.test.cjs` (23 passed), `node integrations/n8n/lead-intake.test.cjs` (21 passed), and `node integrations/n8n/attom-valuation.test.cjs` (17 passed) at PR head `10486fde`. These local checks do not prove broader ATTOM coverage or CRM delivery. The earlier full sample Yes reached the guarded follow-up prompt, and focused Yes, No and timeout follow-up previews passed; a new full provider-backed Yes through the final follow-up answer has not been run after this regression. The confirmation timeout passed in a prior full preview. The isolated ATTOM n8n workflow remains inactive and idle; no production publish, CRM write or notification occurred.
+
+Before seller CRM testing, implement deterministic service-specific opt-in and contact capture, bind the connected TESTING HubSpot credential only to an inactive gated workflow, and verify a synthetic contact ID, duplicate/failure responses and Paul-only delivery with truthful visitor wording. Keep PR #11 draft and production routing untouched.
