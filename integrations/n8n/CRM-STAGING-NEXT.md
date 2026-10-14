@@ -1,0 +1,20 @@
+# Isolated synthetic HubSpot write gate
+
+Status: code contract only. `crm-stage-gate.js` is not installed in n8n and does not call HubSpot, send a notification, or persist a receipt. The existing no-write intake workflow remains inactive and unchanged. Do not publish the Voiceflow TESTING project or merge PR #11 on the strength of these checks.
+
+## Verified portal facts, October 14
+
+- HubSpot CONTACT read/write is available to the connected user. The `firstname`, `email`, `phone`, `property_address`, `lead_type`, `seller_next_step`, `hs_lead_status`, `lead_source`, and `hubspot_owner_id` properties exist.
+- `seller_next_step=professional_home_valuation`, `lead_type=seller`, and `hs_lead_status=NEW` are valid internal enum values. Paul Egan's owner ID is `84884614`.
+- These property checks do not show whether a new contact would enter a HubSpot workflow, send an email, or notify another person. Treat automation isolation as unverified until inspected in the portal.
+
+## Next installation sequence
+
+1. In the isolated Voiceflow workflow, record a unique session/event reference when the fixed `bucks-testing-seller-v1` notice is displayed and the visitor explicitly chooses Yes. The server must store a receipt with exact service, recipient, notice text/version, accepted time and withdrawal state. Do not treat the request body's copy of those values as the stored receipt.
+2. Add durable idempotency reservation keyed to the receipt before any CRM write. A retry must read the prior result and return the same contact ID or a neutral pending/error state, never create a second contact because an HTTP response was lost.
+3. Inspect HubSpot contact-creation automation and notification triggers. Exclude TESTING records or use an isolated portal before setting `automationsIsolated=true`. The new gate rejects the write until that trusted server-side flag is true.
+4. Create a **separate inactive** n8n workflow with manual or private test-only entry, a server-side receipt lookup, the gate, a HubSpot write through the TESTING OAuth credential, a CRM read-back of ID/email/owner, and a response. It must never share the current no-write webhook path or modify the production Voiceflow project. Use only a clearly marked `TESTING` name and `@example.invalid` email; do not use a real phone.
+5. Test accepted, No, withdrawal, expired/mismatched notice, malformed contact, lost response, duplicate replay, HubSpot 400/409/429/5xx and read-back mismatch. Require a real CRM contact ID and matching owner/email for a synthetic success. `notification_allowed` remains false; agent delivery needs its own later opt-in, deduplication and observable delivery result.
+6. Only then connect a selected-service consent and one-field-at-a-time contact path in Voiceflow, keeping every visitor message tied to the actual server response. Verify full conversations, representative Bucks coverage, rollback and production cutover separately before merge.
+
+HubSpot's September 2026 API version enforces configured required fields and conditional validation on writes; inspect the portal settings before the first synthetic creation. The schema check above confirms available fields and enums, not every account-level creation rule. See HubSpot's [CRM API validation change](https://developers.hubspot.com/changelog/crm-api-write-validation-enforcement) and n8n's [Data Table row operations](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.datatable/rows/) if a private n8n table is selected for receipt and idempotency state. Set access, retention and deletion behavior before storing contact details there.
