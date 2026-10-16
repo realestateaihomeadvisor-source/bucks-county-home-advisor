@@ -124,10 +124,19 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.1; }
 }
 
 .reveal {
-  opacity: 0; transform: translateY(24px);
+  opacity: 1; transform: none;
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
+.reveal.pending { opacity: 0; transform: translateY(24px); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+[id] { scroll-margin-top: 88px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal.pending { opacity: 1; transform: none; }
+}
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
@@ -526,7 +535,7 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
     </li>
     <li><a href="sell-my-house-bucks-county.html">Sell My House</a></li>
     <li><a href="blog/index.html">Blog</a></li>
-    <li><a href="#estimate" class="nav-btn">Get My Estimate <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></li>
+    <li><a href="#chatbot" class="nav-btn">Get My Estimate <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></li>
   </ul>
 </nav>
 
@@ -584,7 +593,7 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
     <div class="section-head reveal">
       <div class="eyebrow">Simple Process</div>
       <h2 class="section-title">Three Steps to Your Estimate</h2>
-      <p class="section-desc">No forms, no agents calling you, no obligation. Just a fast, honest AI estimate based on what homes like yours are actually selling for right now.</p>
+      <p class="section-desc">Start with a conversation. Connecting with a local agent is optional, with no obligation. Just a fast, honest AI estimate based on what homes like yours are actually selling for right now.</p>
       <p style="font-size:0.9rem; color:var(--muted); line-height:1.65; max-width:540px; margin-top:12px;"><a href="bucks-county-home-value-estimator.html" style="color:var(--forest); font-weight:500; border-bottom:1px solid rgba(44,74,62,0.28);">Learn more about our Bucks County Home Value Estimator</a></p>
     </div>
     <div class="steps-row">
@@ -640,9 +649,9 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
         <div class="report-badge">✓ Complete</div>
       </div>
       <div class="estimate-block">
-        <div class="estimate-small-label">Estimated Value Range</div>
+        <div class="estimate-small-label">Sample report · Illustrative value range</div>
         <div class="estimate-value">$485K – $512K</div>
-        <div class="estimate-address">148 Covered Bridge Rd · Doylestown, PA 18901</div>
+        <div class="estimate-address">Example Bucks County home · Doylestown, PA</div>
         <div class="estimate-tags"><span class="tag">4 bed · 2.5 bath</span><span class="tag">Updated kitchen</span><span class="tag">2,200 sqft</span></div>
       </div>
       <div class="report-meta"><span>Based on <strong>8 nearby sales</strong></span><span>Past <strong>90 days</strong></span><span>Within <strong>1.2 miles</strong></span></div>
@@ -666,7 +675,7 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
     <div class="eyebrow" style="justify-content:center;">Free &amp; Instant</div>
     <h2 class="section-title">Ready to Know What<br>Your Home Is Worth?</h2>
     <p class="section-desc">Join Bucks County homeowners who've used our AI to get a fast, honest, local estimate — with zero pressure and zero cost.</p>
-    <a href="#estimate" class="btn-primary" style="display:inline-flex;">Get My Free AI Estimate <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    <a href="#chatbot" class="btn-primary" style="display:inline-flex;">Get My Free AI Estimate <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     <div class="cta-note"><span>✓ No sign-up required</span><span>✓ No spam, ever</span><span>✓ Instant results</span></div>
     <p style="font-size:0.88rem; color:var(--muted); line-height:1.65; max-width:480px; margin:22px auto 0; text-align:center;"><a href="sell-my-house-bucks-county.html" style="color:var(--forest); font-weight:500; border-bottom:1px solid rgba(44,74,62,0.28);">Thinking about selling? Read our Sell My House in Bucks County guide</a></p>
   </div>
@@ -759,12 +768,17 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
     });
   });
 
+  if ('IntersectionObserver' in window) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.classList.add('pending');
+    observer.observe(el);
+  });
+  }
 </script>
 
 <!-- ═══════════════ VOICEFLOW EMBED ═══════════════ -->
