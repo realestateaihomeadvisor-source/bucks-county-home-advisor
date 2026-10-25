@@ -26,6 +26,47 @@ test('partial address clears estimate and does not reach provider',()=>{
 test('JSON-breaking address input is rejected',()=>{
   assert.equal(run('parser',{last_utterance:'123 "Main" St, Quakertown, PA 18951'}).route,'invalid');
 });
+const addressCases = [
+  ['comma-free address', '468 SEQUOIA DR SMYRNA DE 19977', '468 SEQUOIA DR', 'SMYRNA, DE 19977'],
+  ['city beginning with unit-like letters', '123 Main St, Stevens PA 17578', '123 Main St', 'Stevens, PA 17578'],
+  ['comma-free city beginning with unit-like letters', '123 Main St Unity PA 15676', '123 Main St', 'Unity, PA 15676'],
+  ['lowercase address', '123 main st quakertown pa 18951', '123 main st', 'quakertown, PA 18951'],
+  ['multiple spaces and tabs', '  123   Main St\tQuakertown   PA   18951  ', '123 Main St', 'Quakertown, PA 18951'],
+  ['pasted multiline address', '123 Main St\r\nQuakertown PA 18951', '123 Main St', 'Quakertown, PA 18951'],
+  ['pasted unit on its own line', '123 Main St\nUnit 2\nQuakertown PA 18951-1234', '123 Main St, Unit 2', 'Quakertown, PA 18951-1234'],
+  ['city and state punctuation', '123 Main St,Quakertown,PA,18951', '123 Main St', 'Quakertown, PA 18951'],
+  ['full Pennsylvania name', '123 Main St, Quakertown Pennsylvania 18951', '123 Main St', 'Quakertown, PA 18951'],
+  ['comma-free multiword city', '123 Main Road New Hope PA 18938', '123 Main Road', 'New Hope, PA 18938'],
+  ['comma-free unit', '123 Main St Apt 2B Quakertown PA 18951', '123 Main St Apt 2B', 'Quakertown, PA 18951'],
+  ['comma before unit', '123 Main St, Unit 2 Quakertown PA 18951', '123 Main St Unit 2', 'Quakertown, PA 18951'],
+  ['hash unit', '123 Main St #2 Quakertown PA 18951', '123 Main St #2', 'Quakertown, PA 18951'],
+  ['abbreviated street punctuation', '123 Main St. Quakertown PA 18951', '123 Main St', 'Quakertown, PA 18951'],
+  ['apostrophe in street', "123 O'Brien Rd, New Hope, PA 18938", "123 O'Brien Rd", 'New Hope, PA 18938'],
+  ['hyphenated house number', '123-125 Main St, Quakertown, PA 18951', '123-125 Main St', 'Quakertown, PA 18951'],
+  ['street without type with explicit delimiter', '123 Broadway, New York, NY 10001', '123 Broadway', 'New York, NY 10001'],
+];
+for (const [name, input, street, locality] of addressCases) test(name, () => {
+  const {state:s, route} = run('parser', {last_utterance:input, confirmed_attom_id:'stale'});
+  assert.equal(route, undefined); assert.equal(s.valuation_address1, street); assert.equal(s.valuation_address2, locality);
+  assert.equal(s.property_address, street + ', ' + locality); assert.equal(s.confirmed_attom_id, '');
+  assert.equal(s.estimate_low, 0); assert.equal(Object.keys(s.valuation_response).length, 0);
+});
+for (const input of [
+  '123 Main St Quakertown PA', '123 Main St Quakertown 18951', '123 Main St PA 18951',
+  'Main St, Quakertown PA 18951', '123 Main St, Quakertown XX 18951',
+  '123 Main St, Quakertown PA 00000', '123 Main St, Quakertown PA 00000-1234', '123 Main St, Quakertown PA 1895',
+  '123 Main St, Quakertown PA 18951-123', '123 Main St, Quakertown PA 18951 extra',
+  '123 Broadway New York NY 10001', '123 Main St N Quakertown PA 18951',
+  '123 Main St Forest Dr New Hope PA 18938', '123 Main St, Unit 2, PA 18951', '123 Main St Unit ABC PA 18951',
+  '123 Main St, Unit ABC PA 18951', '123 Main St Apt 2 PA 18951',
+  '123 Main St, Quakertown PA 18951\u0000', '123 Main St, Quakertown PA 18951\\',
+  '123 Main St, Quakertown PA 18951' + ' '.repeat(401),
+]) test('incomplete, unsafe or ambiguous address is rejected: ' + JSON.stringify(input).slice(0,85), () => {
+  const {state:s, route} = run('parser', {last_utterance:input, property_address:'OLD', city:'OLD', state:'PA', property_zip:'18951', confirmed_attom_id:'stale'});
+  assert.equal(route, 'invalid');
+  for (const key of ['property_address','city','state','property_zip','valuation_address1','valuation_address2','confirmed_attom_id']) assert.equal(s[key], '');
+  assert.equal(s.estimate_low, 0); assert.equal(s.estimate_high_display, '');
+});
 test('unconfirmed match exposes address and withholds range',()=>{
   const {state:s,route}=run('formatter',{valuation_response:match,last_utterance:'Yes'}); assert.equal(route,'confirm'); assert.equal(s.last_utterance,''); assert.equal(s.estimate_low,0); assert.equal(s.estimate_high_display,''); assert.match(s.valuation_display,/468 SEQUOIA/); assert.doesNotMatch(s.valuation_display,/253,561/);
 });
