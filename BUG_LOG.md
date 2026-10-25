@@ -70,3 +70,7 @@ DO NOT CHANGE autostart TO false. Ever. This breaks the greeting.
 - Drag individual FILES into Netlify, never the folder
 - If rename dialog appears, click "Deploy without renaming"
 - Always test in incognito window after deploying
+
+## October 25, 2026 — PREPARED, NOT DEPLOYED: address and mobile input improvements
+
+The draft quality branch relaxes presentation syntax for complete addresses and clears stale property fields after invalid input. It also adds a candidate mobile viewport controller so the composer can fit above the software keyboard. Offline regressions and an independent code review passed. These changes are not installed in Voiceflow or published on the website. The specific reported address failures remain unproven until a full staging reproduction. Real iPhone keyboard QA and full ATTOM → consent → CRM → notification verification remain open. See `docs/PRODUCT-QUALITY.md` and `AGENTS.md`.
