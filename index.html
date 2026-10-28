@@ -210,7 +210,7 @@ nav {
   min-height: 100vh;
   padding: 100px 52px 80px;
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px; align-items: center;
+  column-gap: 64px; row-gap: 0; align-items: center; align-content: center;
   position: relative; overflow: hidden;
 }
 
@@ -229,7 +229,8 @@ nav {
   background-size: 48px 48px;
 }
 
-.hero-left { position: relative; z-index: 2; }
+.hero-left { position: relative; z-index: 2; grid-column: 1; grid-row: 1; align-self: end; }
+.hero-support { position: relative; z-index: 2; grid-column: 1; grid-row: 2; align-self: start; }
 
 .live-badge {
   display: inline-flex; align-items: center; gap: 9px;
@@ -312,7 +313,7 @@ nav {
 }
 .pill-icon { font-size: 0.85rem; }
 
-.hero-right { position: relative; z-index: 2; animation: fadeUp 0.7s 0.2s ease both; }
+.hero-right { grid-column: 2; grid-row: 1 / 3; position: relative; z-index: 2; animation: fadeUp 0.7s 0.2s ease both; }
 .card-wrap { position: relative; }
 
 .card-shadow-deco {
@@ -463,6 +464,53 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
   footer { padding: 48px 24px 32px; }
   .footer-top { grid-template-columns: 1fr; gap: 32px; }
 }
+
+/* Narrow screens: fit the viewport and put chat immediately after the heading. */
+@media (max-width: 960px) {
+  body { overflow-x: visible; }
+  nav { height: 56px; padding: 0 16px; }
+  .nav-brand { min-width: 0; }
+  .nav-brand img { height: 38px; max-width: 100%; object-fit: contain; }
+  .hero {
+    min-height: 0; padding: 72px 16px 40px;
+    grid-template-columns: minmax(0, 1fr); gap: 16px;
+    align-items: start; overflow: visible;
+  }
+  .hero-left, .hero-support, .hero-right, .card-wrap,
+  .chatbot-card, #vf-chat-embed { min-width: 0; max-width: 100%; }
+  .hero-left, .hero-support { position: relative; z-index: 2; }
+  .hero-left { grid-column: 1; grid-row: 1; text-align: center; }
+  .hero-right { grid-column: 1; grid-row: 2; width: 100%; scroll-margin-top: 72px; }
+  .hero-support { grid-column: 1; grid-row: 3; }
+  .hero-h1, .hero-sub-line { font-size: clamp(1.6rem, 6.8vw, 2rem); line-height: 1.12; }
+  .hero-h1 { margin-bottom: 2px; }
+  .hero-h1 .accent::after { height: 2px; bottom: 1px; }
+  .hero-sub-line { margin-bottom: 0; }
+  .hero-desc { font-size: 1rem; line-height: 1.55; margin-bottom: 16px; }
+  .hero-cta { gap: 12px; margin-bottom: 16px; }
+  .chatbot-card { width: 100%; margin-inline: auto; }
+  .card-header { padding: 12px 14px; }
+  .advisor-info { min-width: 0; gap: 10px; }
+  .advisor-info > div:last-child { min-width: 0; overflow-wrap: anywhere; }
+  .advisor-avatar { width: 34px; height: 34px; }
+  .advisor-name { font-size: 0.85rem; }
+  .card-disclaimer { font-size: 0.75rem; margin-top: 10px; }
+  .section { padding-inline: 16px !important; }
+  .why-section, .cta-section { padding-inline: 16px; }
+  .why-section { grid-template-columns: minmax(0, 1fr); }
+  .why-section > *, .why-text { min-width: 0; }
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat-num { overflow-wrap: anywhere; }
+  .report-visual { padding: 24px 18px; }
+  .report-header, .report-meta, .cta-note { flex-wrap: wrap; gap: 12px; }
+  .estimate-value { font-size: 1.8rem; overflow-wrap: anywhere; }
+  .btn-primary { max-width: 100%; padding: 14px 20px; }
+  footer { padding-inline: 16px; overflow-wrap: anywhere; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: minmax(0, 1fr); }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -540,18 +588,6 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
     </div>
     <h1 class="hero-h1">What Is Your<br><span class="accent">Bucks County</span></h1>
     <div class="hero-sub-line">Home Worth?</div>
-    <p class="hero-desc">Explore a free starting estimate for your Bucks County home. Estimates are not appraisals; property details and local conditions can affect value.</p>
-    <div class="hero-cta">
-      <a href="#chatbot" class="btn-primary">Get My Free Estimate <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      <a href="#how-it-works" class="btn-ghost">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
-    </div>
-    <p style="font-size:0.9rem; line-height:1.6; margin-top:12px;">Need help with the estimator? <a href="mailto:realestateaihomeadvisor@gmail.com?subject=Bucks%20County%20estimator%20help">Email our team</a>. This opens your email app; nothing is sent until you send it.</p>
-    <div class="trust-pills">
-      <div class="pill"><span class="pill-icon">🏡</span> Real local sales data</div>
-      <div class="pill"><span class="pill-icon">⚡</span> Free starting estimate</div>
-      <div class="pill"><span class="pill-icon">🔒</span> Agent contact is optional</div>
-    </div>
-    <p style="font-size:0.8rem; color:var(--muted); line-height:1.65; max-width:460px; margin-top:16px;"><a href="bucks-county-home-value-estimator.html" style="color:var(--forest); font-weight:500; border-bottom:1px solid rgba(44,74,62,0.28);">Bucks County Home Value Estimator</a><span style="color:var(--warm-mid);"> · </span><a href="what-is-my-home-worth-in-bucks-county.html" style="color:var(--forest); font-weight:500; border-bottom:1px solid rgba(44,74,62,0.28);">What Is My Home Worth in Bucks County?</a><span style="color:var(--warm-mid);"> · </span><a href="sell-my-house-bucks-county.html" style="color:var(--forest); font-weight:500; border-bottom:1px solid rgba(44,74,62,0.28);">Sell My House in Bucks County</a></p>
   </div>
 
   <div class="hero-right" id="chatbot">
@@ -578,6 +614,22 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
       <a href="#legal">Learn more</a>
     </p>
   </div>
+
+  <div class="hero-support">
+    <p class="hero-desc">Explore a free starting estimate for your Bucks County home. Estimates are not appraisals; property details and local conditions can affect value.</p>
+    <div class="hero-cta">
+      <a href="#chatbot" class="btn-primary">Get My Free Estimate <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="#how-it-works" class="btn-ghost">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+    </div>
+    <p style="font-size:0.9rem; line-height:1.6; margin-top:12px;">Need help with the estimator? <a href="mailto:realestateaihomeadvisor@gmail.com?subject=Bucks%20County%20estimator%20help">Email our team</a>. This opens your email app; nothing is sent until you send it.</p>
+    <div class="trust-pills">
+      <div class="pill"><span class="pill-icon">🏡</span> Real local sales data</div>
+      <div class="pill"><span class="pill-icon">⚡</span> Free starting estimate</div>
+      <div class="pill"><span class="pill-icon">🔒</span> Agent contact is optional</div>
+    </div>
+    <p style="font-size:0.8rem; color:var(--muted); line-height:1.65; max-width:460px; margin-top:16px;"><a href="bucks-county-home-value-estimator.html" style="color:var(--forest); font-weight:500; border-bottom:1px solid rgba(44,74,62,0.28);">Bucks County Home Value Estimator</a><span style="color:var(--warm-mid);"> · </span><a href="what-is-my-home-worth-in-bucks-county.html" style="color:var(--forest); font-weight:500; border-bottom:1px solid rgba(44,74,62,0.28);">What Is My Home Worth in Bucks County?</a><span style="color:var(--warm-mid);"> · </span><a href="sell-my-house-bucks-county.html" style="color:var(--forest); font-weight:500; border-bottom:1px solid rgba(44,74,62,0.28);">Sell My House in Bucks County</a></p>
+  </div>
+
 </section>
 
 <section class="section how-section" id="how-it-works">
