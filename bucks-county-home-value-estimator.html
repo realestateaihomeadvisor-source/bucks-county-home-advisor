@@ -997,6 +997,7 @@ document.querySelectorAll('.nav-dropdown').forEach(function(dropdown) {
 
   v.onload = function() {
     let userId = '';
+    let launchPayload = {};
 
     try {
       const params = new URLSearchParams(window.location.search);
@@ -1011,6 +1012,12 @@ document.querySelectorAll('.nav-dropdown').forEach(function(dropdown) {
         userId = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
         localStorage.setItem(STORAGE_KEY, userId);
       }
+
+      const tagNames = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+      launchPayload = Object.fromEntries(tagNames.flatMap((name) => {
+        const value = (params.get(name) || '').trim().toLowerCase();
+        return /^[a-z0-9_-]{1,64}$/.test(value) ? [[name, value]] : [];
+      }));
     } catch (e) {
       userId = 'user_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
     }
@@ -1026,7 +1033,7 @@ document.querySelectorAll('.nav-dropdown').forEach(function(dropdown) {
       },
       autostart: true,
       launch: {
-        event: { type: 'launch', payload: {} }
+        event: { type: 'launch', payload: launchPayload }
       },
       assistant: {
         title:       'Bucks County Home Advisor',
