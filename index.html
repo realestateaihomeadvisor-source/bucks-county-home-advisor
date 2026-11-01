@@ -551,7 +551,7 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
 <script>
 (function () {
   if (/\/index\.html$/i.test(location.pathname)) {
-    location.replace(location.pathname.replace(/index\.html$/i, '/') + location.search + location.hash);
+    location.replace(location.origin + location.pathname.replace(/index\.html$/i, '') + location.search + location.hash);
   }
 })();
 </script>
