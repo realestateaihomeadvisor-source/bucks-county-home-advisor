@@ -623,7 +623,7 @@ footer { background: var(--ink); padding: 52px 52px 36px; }
           </div>
           <div class="card-badge">Free</div>
         </div>
-        <div style="width:100%; height:520px; border-radius:0 0 28px 28px; overflow:hidden; position:relative;">
+        <div id="vf-chat-viewport" style="width:100%; height:520px; border-radius:0 0 28px 28px; overflow:hidden; position:relative;">
           <div id="vf-chat-embed" style="width:100%; height:580px; margin-top:-58px;"></div>
         </div>
       </div>
@@ -862,6 +862,50 @@ document.querySelectorAll('.nav-dropdown').forEach(function(dropdown) {
 <style>
 #vf-chat-embed iframe { border: none !important; }
 </style>
+
+<script id="chat-viewport-controller">
+// Keep the embedded composer's bottom inside the visible mobile viewport.
+// No widget internals, conversation data, or provider configuration are changed.
+(function () {
+  var shell = document.getElementById('vf-chat-viewport');
+  var embed = document.getElementById('vf-chat-embed');
+  if (!shell || !embed) return;
+  var viewport = window.visualViewport;
+  var scheduled = false;
+
+  function updateChatViewport() {
+    scheduled = false;
+    if (viewport && Math.abs(viewport.scale - 1) > 0.05) return;
+    if (window.innerWidth > 960) {
+      shell.style.height = '520px';
+      embed.style.height = '580px';
+      return;
+    }
+    var visibleHeight = viewport ? viewport.height : window.innerHeight;
+    var height = Math.max(0, Math.min(520, visibleHeight - 32));
+    shell.style.height = height + 'px';
+    // Existing 58px header clip plus 2px bottom allowance.
+    embed.style.height = (height + 60) + 'px';
+    // Focus in either an iframe or a shadow-root host belongs to this embed.
+    if (!embed.contains(document.activeElement)) return;
+    var bounds = shell.getBoundingClientRect();
+    var visibleTop = viewport ? viewport.offsetTop : 0;
+    var overflow = bounds.bottom - (visibleTop + visibleHeight - 16);
+    if (overflow > 1) window.scrollBy({ top: overflow, behavior: 'instant' });
+  }
+
+  function scheduleChatViewport() {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(updateChatViewport);
+  }
+  window.addEventListener('resize', scheduleChatViewport);
+  window.addEventListener('orientationchange', scheduleChatViewport);
+  document.addEventListener('focusin', scheduleChatViewport);
+  if (viewport) viewport.addEventListener('resize', scheduleChatViewport);
+  scheduleChatViewport();
+})();
+</script>
 
 <script type="text/javascript">
 (function(d, t) {

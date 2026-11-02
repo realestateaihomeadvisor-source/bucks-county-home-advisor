@@ -1,0 +1,159 @@
+{
+  "source_url": "https://files.zillowstatic.com/research/public_csvs/zhvi/Zip_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv",
+  "retrieved_on": "2026-10-11",
+  "purpose": "Internal audit benchmark, not a property estimate or validated replacement range",
+  "zips": {
+    "19067": {
+      "city": "Yardley",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 603086,
+      "legacy_low": 430000,
+      "legacy_high": 650000
+    },
+    "18102": {
+      "city": "Allentown",
+      "county": "Lehigh County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 226033,
+      "legacy_low": 220000,
+      "legacy_high": 365000
+    },
+    "18042": {
+      "city": "Easton",
+      "county": "Northampton County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 274018,
+      "legacy_low": 240000,
+      "legacy_high": 390000
+    },
+    "18974": {
+      "city": "Warminster",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 500223,
+      "legacy_low": 360000,
+      "legacy_high": 525000
+    },
+    "18017": {
+      "city": "Bethlehem",
+      "county": "Northampton County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 390482,
+      "legacy_low": 300000,
+      "legacy_high": 475000
+    },
+    "18951": {
+      "city": "Quakertown",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 455420,
+      "legacy_low": 325000,
+      "legacy_high": 500000
+    },
+    "18966": {
+      "city": "Churchville",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 565609,
+      "legacy_low": 390000,
+      "legacy_high": 575000
+    },
+    "19047": {
+      "city": "Langhorne",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 574114,
+      "legacy_low": 370000,
+      "legacy_high": 550000
+    },
+    "18940": {
+      "city": "Newtown",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 750809,
+      "legacy_low": 520000,
+      "legacy_high": 800000
+    },
+    "18901": {
+      "city": "Doylestown",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 683319,
+      "legacy_low": 475000,
+      "legacy_high": 725000
+    },
+    "18064": {
+      "city": "Nazareth",
+      "county": "Northampton County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 462016,
+      "legacy_low": 310000,
+      "legacy_high": 490000
+    },
+    "18976": {
+      "city": "Warrington",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 606022,
+      "legacy_low": 425000,
+      "legacy_high": 625000
+    },
+    "18914": {
+      "city": "Chalfont",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 622582,
+      "legacy_low": 410000,
+      "legacy_high": 600000
+    },
+    "18049": {
+      "city": "Emmaus",
+      "county": "Lehigh County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 390250,
+      "legacy_low": 320000,
+      "legacy_high": 500000
+    },
+    "18040": {
+      "city": "Easton",
+      "county": "Northampton County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 464448,
+      "legacy_low": 335000,
+      "legacy_high": 520000
+    },
+    "18013": {
+      "city": "Bangor",
+      "county": "Northampton County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 320500,
+      "legacy_low": 270000,
+      "legacy_high": 430000
+    },
+    "18938": {
+      "city": "New Hope",
+      "county": "Bucks County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 982508,
+      "legacy_low": 550000,
+      "legacy_high": 850000
+    },
+    "18055": {
+      "city": "Hellertown",
+      "county": "Northampton County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 377683,
+      "legacy_low": 300000,
+      "legacy_high": 470000
+    },
+    "18034": {
+      "city": "Center Valley",
+      "county": "Lehigh County",
+      "as_of": "2026-08-31",
+      "zhvi_typical_value": 576206,
+      "legacy_low": 420000,
+      "legacy_high": 650000
+    }
+  }
+}
