@@ -1,6 +1,6 @@
 # Bucks County Home Value Now
 
-> Public-facing AI home value estimator and lead generation site for Bucks County, Pennsylvania homeowners. Estimates are AI-generated using public market data—they are not professional appraisals, CMAs, broker price opinions, or official valuations. The operator is not a licensed real estate brokerage.
+> Free AI home value information for Bucks County, Pennsylvania homeowners. Estimates are AI-generated using public market data—they are not professional appraisals, CMAs, broker price opinions, or official valuations. The operator is not a licensed real estate brokerage.
 
 ## Canonical site
 
